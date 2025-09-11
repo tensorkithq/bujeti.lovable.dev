@@ -115,41 +115,35 @@ const fragmentShader = `
     float t = time;
     
     float eDist = edgeDistance(uv);
-    // Early exit if fragment is far from the border
-    if (eDist > thickness * 50.0) {
-      gl_FragColor = vec4(0.0);
-      return;
+
+    // --- Debugging Step 2: Isolate the main beam animation ---
+    // If this single beam flows, the error is in the wisp/combination logic.
+    if (eDist > thickness * 30.0) {
+        gl_FragColor = vec4(0.0);
+        return;
     }
 
     float borderPos = borderPosition(uv, eDist);
     
-    // --- Main Laser Beam ---
-    float flow = mod(t * speed, 4.0); // 4.0 is perimeter length
+    float flow = mod(t * speed, 4.0);
     float dist_from_head = min(abs(borderPos - flow), 4.0 - abs(borderPos - flow));
     
-    float beamWidth = 1.2;
+    float beamWidth = 0.8;
     float beam = smoothstep(beamWidth, 0.0, dist_from_head);
-    beam = pow(beam, 2.5);
-    beam *= 0.8 + 0.2 * sin(-t * speed * 8.0); // Pulsing
+    beam = pow(beam, 2.0);
 
-    // --- Wisps ---
-    float wisps = borderWisps(borderPos, eDist, t);
-
-    // --- Combine and apply falloff ---
     float falloff = 1.0 - smoothstep(0.0, thickness * 20.0, eDist);
-    falloff = pow(falloff, 1.5);
-
-    float total_effect = (beam + wisps * 0.5) * falloff;
+    
+    float total_effect = beam * falloff * intensity;
 
     if (total_effect < 0.01) {
       gl_FragColor = vec4(0.0);
       return;
     }
-
-    vec3 finalColor = color * total_effect * intensity;
-    float alpha = clamp(total_effect * 1.5, 0.0, 1.0);
     
-    gl_FragColor = vec4(finalColor, alpha);
+    vec3 finalColor = color * total_effect;
+    
+    gl_FragColor = vec4(finalColor, total_effect);
   }
 `;
 
@@ -201,6 +195,7 @@ const LaserBorder: React.FC<LaserBorderProps> = ({
     
     renderer.setClearColor(0x000000, 0);
     // Explicitly set blend function to match working examples
+    renderer.getContext().enable(renderer.getContext().BLEND);
     renderer.getContext().blendFunc(renderer.getContext().SRC_ALPHA, renderer.getContext().ONE_MINUS_SRC_ALPHA);
 
     renderer.domElement.style.width = '100%';
@@ -249,7 +244,7 @@ const LaserBorder: React.FC<LaserBorderProps> = ({
       transparent: true,
       depthTest: false,
       depthWrite: false,
-      blending: THREE.NormalBlending // Use NormalBlending for more predictable alpha compositing
+      blending: THREE.NormalBlending // Revert to NormalBlending for debugging
     });
 
     const mesh = new THREE.Mesh(geometry, material);
