@@ -1,7 +1,7 @@
-import Hero from '../blocks/Hero';
-import Features from '../blocks/Features';
-import Header from '../components/Header';
-import Footer from '@/blocks/Footer';
+import Hero from "../blocks/Hero";
+import Features from "../blocks/Features";
+import Header from "../components/Header";
+import Footer from "@/blocks/Footer";
 
 const Index = () => {
   return (
@@ -11,7 +11,7 @@ const Index = () => {
         <Hero />
       </header>
       <Features />
-      <section className="bg-white text-black py-16"/>
+      <section className="bg-white text-black py-16" />
       <Footer />
     </main>
   );

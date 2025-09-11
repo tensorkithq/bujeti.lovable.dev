@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const Logo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.514 24" className="h-6 w-auto">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 80.514 24"
+    className="h-6 w-auto"
+  >
     <path
       d="M 7.996 13.535 C 7.996 13.535 8.238 15.439 9.808 17.01 C 11.408 18.609 13.031 18.571 13.031 18.571 L 10.499 21.104 C 10.499 21.104 8.822 20.929 7.18 19.287 C 5.742 17.849 5.464 16.068 5.464 16.068 Z M 11.377 13.425 C 11.377 13.425 13.147 14.167 15.293 13.593 C 17.478 13.007 18.257 11.582 18.257 11.582 L 19.184 15.042 C 19.184 15.042 18.194 16.407 15.951 17.008 C 13.986 17.534 12.305 16.886 12.305 16.886 L 11.378 13.426 Z M 12.973 10.442 C 12.973 10.442 14.501 9.28 15.075 7.136 C 15.66 4.951 14.816 3.564 14.816 3.564 L 18.276 4.49 C 18.276 4.49 18.963 6.029 18.362 8.272 C 17.836 10.238 16.433 11.369 16.433 11.369 Z M 11.188 7.568 C 11.188 7.568 10.946 5.664 9.375 4.094 C 7.776 2.494 6.152 2.532 6.152 2.532 L 8.684 0 C 8.684 0 10.36 0.175 12.002 1.816 C 13.441 3.255 13.719 5.036 13.719 5.036 L 11.187 7.568 Z M 7.806 7.678 C 7.806 7.678 6.036 6.936 3.891 7.51 C 1.706 8.095 0.927 9.521 0.927 9.521 L 0 6.061 C 0 6.061 0.989 4.697 3.232 4.096 C 5.198 3.57 6.879 4.218 6.879 4.218 L 7.805 7.678 Z M 6.211 10.661 C 6.211 10.661 4.683 11.823 4.108 13.968 C 3.523 16.153 4.367 17.54 4.367 17.54 L 0.907 16.613 C 0.907 16.613 0.22 15.074 0.821 12.831 C 1.348 10.866 2.751 9.735 2.751 9.735 Z M 33.216 11.011 C 32.853 10.849 32.016 10.643 32.016 10.643 L 32.016 10.398 L 32.497 10.185 C 33.271 9.849 33.874 9.375 34.306 8.76 C 34.737 8.145 34.953 7.431 34.953 6.616 C 34.953 5.802 34.741 5.06 34.318 4.388 C 33.894 3.718 33.3 3.187 32.533 2.795 C 31.767 2.404 30.888 2.209 29.898 2.209 L 23.413 2.209 L 23.413 18.976 L 30.617 18.976 C 31.607 18.976 32.486 18.789 33.253 18.413 C 34.019 18.038 34.614 17.515 35.037 16.844 C 35.46 16.174 35.672 15.431 35.672 14.616 C 35.672 13.802 35.456 13.064 35.025 12.448 C 34.594 11.834 33.991 11.355 33.216 11.011 Z M 26.742 5.153 L 29.562 5.153 C 30.009 5.153 30.401 5.237 30.736 5.405 C 31.072 5.572 31.331 5.808 31.515 6.111 C 31.698 6.415 31.79 6.758 31.79 7.141 C 31.79 7.524 31.698 7.888 31.515 8.183 C 31.331 8.479 31.072 8.719 30.736 8.902 C 30.401 9.085 30.009 9.177 29.562 9.177 L 26.742 9.177 Z M 31.946 15.046 C 31.762 15.35 31.506 15.59 31.179 15.765 C 30.852 15.941 30.464 16.028 30.017 16.028 L 26.741 16.028 L 26.741 12.004 L 30.017 12.004 C 30.464 12.004 30.851 12.092 31.179 12.267 C 31.506 12.443 31.762 12.679 31.946 12.974 C 32.129 13.27 32.221 13.617 32.221 14.016 C 32.221 14.415 32.129 14.743 31.946 15.046 Z M 49.954 18.974 C 49.954 19.565 49.897 20.012 49.786 20.316 C 49.674 20.62 49.475 20.835 49.187 20.963 C 48.899 21.09 48.453 21.146 47.845 21.131 L 47.845 23.981 C 49.171 24.06 50.225 23.893 51.008 23.477 C 51.79 23.062 52.349 22.471 52.684 21.705 C 53.02 20.938 53.187 20.028 53.187 18.974 L 53.187 6.615 L 49.954 6.615 Z M 64.497 7.405 C 63.442 6.718 62.237 6.375 60.88 6.375 C 59.666 6.375 58.564 6.658 57.574 7.225 C 56.584 7.792 55.805 8.563 55.238 9.537 C 54.672 10.51 54.388 11.597 54.388 12.794 C 54.388 13.992 54.679 15.082 55.263 16.063 C 55.845 17.045 56.64 17.817 57.646 18.375 C 58.652 18.934 59.769 19.213 61 19.213 C 62.293 19.213 63.442 18.914 64.448 18.315 C 65.455 17.716 66.245 16.913 66.82 15.907 L 64.161 14.71 C 63.857 15.253 63.438 15.676 62.904 15.98 C 62.368 16.284 61.766 16.435 61.095 16.435 C 60.424 16.435 59.793 16.279 59.251 15.968 C 58.708 15.657 58.288 15.222 57.993 14.663 C 57.873 14.434 57.777 14.193 57.706 13.944 L 67.251 13.944 C 67.474 12.587 67.334 11.329 66.832 10.172 C 66.329 9.014 65.55 8.092 64.496 7.405 Z M 57.76 11.477 C 57.82 11.296 57.893 11.12 57.981 10.95 C 58.268 10.391 58.667 9.952 59.178 9.633 C 59.689 9.313 60.256 9.154 60.879 9.154 C 61.502 9.154 62.056 9.297 62.544 9.585 C 63.031 9.872 63.418 10.272 63.706 10.782 C 63.829 11.001 63.927 11.234 64.003 11.477 L 57.759 11.477 Z M 72.784 1.967 L 69.55 2.973 L 69.55 6.615 L 67.059 6.615 L 67.059 9.465 L 69.55 9.465 L 69.55 14.184 C 69.55 15.797 69.958 16.999 70.772 17.789 C 71.587 18.579 72.84 18.974 74.533 18.974 L 75.995 18.974 L 75.995 16.124 L 74.533 16.124 C 73.926 16.124 73.483 15.984 73.203 15.705 C 72.923 15.426 72.784 14.982 72.784 14.376 L 72.784 9.466 L 75.994 9.466 L 75.994 6.615 L 72.784 6.615 Z M 77.28 6.615 L 80.514 6.615 L 80.514 18.974 L 77.28 18.974 Z M 49.954 2.207 L 53.187 2.207 L 53.187 5.031 L 49.954 5.031 Z M 77.28 2.207 L 80.514 2.207 L 80.514 5.031 L 77.28 5.031 Z M 42.298 19.11 C 39.08 19.11 36.75 16.621 36.75 13.561 L 36.75 6.615 L 39.958 6.615 L 39.958 13.561 C 39.958 14.852 40.85 15.985 42.298 15.985 C 43.885 15.985 44.912 14.852 44.912 13.561 L 44.912 6.615 L 48.12 6.615 L 48.12 13.561 C 48.12 16.621 45.358 19.11 42.298 19.11 Z"
       fill="rgb(0,0,0)"
@@ -10,90 +14,105 @@ const Logo = () => (
 );
 
 const linkSections = [
-    {
-      title: 'Product',
-      links: [
-        { name: 'Expense management', href: 'https://bujeti.com/expense-management' },
-        { name: 'Payments automation', href: 'https://bujeti.com/payments-automation' },
-        { name: 'Corporate cards', href: 'https://bujeti.com/corporate-card' },
-        { name: 'Bank connect', href: 'https://bujeti.com/bank-connect' },
-        { name: 'Invoicing', href: 'https://bujeti.com/invoicing' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { name: 'About us', href: 'https://bujeti.com/about' },
-        { name: 'Careers', href: 'https://www.linkedin.com/company/bujeti/jobs/', target: '_blank' },
-        { name: 'Events', href: 'https://www.linkedin.com/company/bujeti/jobs/', target: '_blank' },
-        { name: 'Contact us', href: 'https://bujeti.com/contact' },
-      ],
-    },
-    {
-      title: 'Resources',
-      links: [
-        { name: 'Blog', href: 'https://bujeti.com/blog' },
-        { name: 'Terms of use', href: 'https://bujeti.com/terms' },
-        { name: 'Privacy Policy', href: 'https://bujeti.com/privacy' },
-      ],
-    },
+  {
+    title: "Product",
+    links: [
+      {
+        name: "Expense management",
+        href: "https://bujeti.com/expense-management",
+      },
+      {
+        name: "Payments automation",
+        href: "https://bujeti.com/payments-automation",
+      },
+      { name: "Corporate cards", href: "https://bujeti.com/corporate-card" },
+      { name: "Bank connect", href: "https://bujeti.com/bank-connect" },
+      { name: "Invoicing", href: "https://bujeti.com/invoicing" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { name: "About us", href: "https://bujeti.com/about" },
+      {
+        name: "Careers",
+        href: "https://www.linkedin.com/company/bujeti/jobs/",
+        target: "_blank",
+      },
+      {
+        name: "Events",
+        href: "https://www.linkedin.com/company/bujeti/jobs/",
+        target: "_blank",
+      },
+      { name: "Contact us", href: "https://bujeti.com/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { name: "Blog", href: "https://bujeti.com/blog" },
+      { name: "Terms of use", href: "https://bujeti.com/terms" },
+      { name: "Privacy Policy", href: "https://bujeti.com/privacy" },
+    ],
+  },
 ];
 
 const Footer = () => {
-    return (
-        <footer className="bg-white text-gray-800 border-t border-gray-200 pt-12">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="py-16">
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                        <div className="col-span-2 lg:col-span-2">
-                            <Logo />
-                            <div className="mt-6 space-y-4 text-sm text-gray-600">
-                                <p>
-                                    Plot 1B, Block 129, Jide Sawyerr Drive, <br />
-                                    Lekki Phase 1, Lagos.
-                                </p>
-                                <p>
-                                    Talk to a product expert today. <br />
-                                    For product inquiries, partnerships, or support, < br />
-                                    please email us at contact@bujeti.com or <br />
-                                    call +234 916 641 5472.
-                                </p>
-                            </div>
-                   
-                        </div>
-
-                        {linkSections.map((section) => (
-                            <div key={section.title}>
-                                <h3 className="text-sm font-semibold text-gray-400">{section.title}</h3>
-                                <ul className="mt-4 space-y-2">
-                                    {section.links.map((link) => (
-                                        <li key={link.name}>
-                                            <a 
-                                                href={link.href}
-                                                target={link.target || '_self'}
-                                                rel="noopener noreferrer"
-                                                className="text-sm text-gray-800 hover:text-gray-900 hover:underline"
-                                            >
-                                                {link.name}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-
-                   
-                    </div>
-                </div>
-
+  return (
+    <footer className="bg-white text-gray-800 border-t border-gray-200 pt-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div className="col-span-2 lg:col-span-2">
+              <Logo />
+              <div className="mt-6 space-y-4 text-sm text-gray-600">
+                <p>
+                  Plot 1B, Block 129, Jide Sawyerr Drive, <br />
+                  Lekki Phase 1, Lagos.
+                </p>
+                <p>
+                  Talk to a product expert today. <br />
+                  For product inquiries, partnerships, or support, <br />
+                  please email us at contact@bujeti.com or <br />
+                  call +234 916 641 5472.
+                </p>
+              </div>
             </div>
-                <div className="py-8 border-t border-gray-200 bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-                    <div className="text-sm container   text-left text-gray-500">
-                        <p>© 2025 Bujeti Inc. All rights reserved. Bujeti and the Bujeti logo are trademarks of Bujeti Inc.</p>
-                    </div>
-                </div>
-        </footer>
-    );
+
+            {linkSections.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-sm font-semibold text-gray-400">
+                  {section.title}
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      <a
+                        href={link.href}
+                        target={link.target || "_self"}
+                        rel="noopener noreferrer"
+                        className="text-sm text-gray-800 hover:text-gray-900 hover:underline"
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="py-8 border-t border-gray-200 bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+        <div className="text-sm container   text-left text-gray-500">
+          <p>
+            © 2025 Bujeti Inc. All rights reserved. Bujeti and the Bujeti logo
+            are trademarks of Bujeti Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
-export default Footer; 
+export default Footer;
