@@ -13,7 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Familjen Grotesk', 'sans-serif'],
+      },
       colors: {
+        'laser-primary': 'hsl(var(--laser-primary))',
+        'laser-secondary': 'hsl(var(--laser-secondary))',
+        'laser-accent': 'hsl(var(--laser-accent))',
+        'laser-glow': 'hsl(var(--laser-glow))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
