@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import LaserFlow from "../components/LaserFlow";
 import { Button } from "@/components/ui/button";
-// import HeroBottom from "@/components/HeroBottom";
 
 
 
 const HeroBottom = () => {
   return (
-    <section className="absolute bottom-0 left-0 w-full bg-transparent text-white overflow-hidden z-20">
+    <section className="absolute bottom-0 px-[17.1rem] md:px-[15.3rem] w-full bg-transparent text-white overflow-hidden z-20">
       <div 
         className="absolute top-0 left-0 w-full h-96 pointer-events-none"
         style={{
@@ -17,13 +16,13 @@ const HeroBottom = () => {
       
       {/* Additional subtle gradient overlay */}
       <div 
-        className="absolute  top-0 left-0 w-full h-64 pointer-events-none"
+        className="absolute top-0 left-0 w-full h-64 pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse at center bottom, rgba(159, 255, 89, 0.05) 0%, transparent 70%)',
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto py-8">
         <div className="text-left mb-8">
           <p className="text-gray-400 text-lg mb-4">Built for businesses at every stage:</p>
           
@@ -108,15 +107,14 @@ const HeroMockup = () => {
         />
       </svg>
       <div className="relative flex w-full justify-start items-start align-left overflow-hidden rounded-2xl ring-1 ring-[rgba(159,255,89,0.62)] ring-inset ring-offset-1 ring-offset-[rgba(159,255,89,0.12)]">
-        <div className="relative  w-full h-full overflow-hidden rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
+        <div className="relative w-full h-full overflow-hidden rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
           <div className="relative w-full h-full bg-[#060010] overflow-hidden">
             <img
               src="/bujeti-mockup.png"
               alt="Bujeti App Mockup"
               className="w-full h-full object-cover"
               style={{
-                filter:
-                  "invert(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
+                filter: "invert(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
                 objectFit: "cover",
               }}
             />
@@ -134,7 +132,7 @@ export default function HeroBlock() {
     <>
     <div
       style={{
-        height: "840px",
+        height: "133vh",
         position: "relative",
         overflow: "hidden",
       }}
@@ -157,10 +155,10 @@ export default function HeroBlock() {
       }}
     >
       <LaserFlow
-        horizontalBeamOffset={0.036}
-        verticalBeamOffset={-0.036}
+        horizontalBeamOffset={0.09}
+        verticalBeamOffset={-0.0813}
         color="#9fff59"
-        horizontalSizing={0.74}
+        horizontalSizing={0.5}
         verticalSizing={3}
         wispDensity={1}
         wispSpeed={15}
@@ -171,18 +169,47 @@ export default function HeroBlock() {
          * Fog intensity doesn't render well on Safari
          * Reduce to 0.002 for compatibility with Safari
          */
-        fogIntensity={0.15}
-        fogScale={0.478}
+        fogIntensity={0.17}
+        fogScale={0.578}
         fogFallSpeed={0.3}
-        decay={1.2}
+        decay={1.5}
         falloffStart={1.5}
       />
+
+      {/* Hero Text Section */}
+      <section
+        className="absolute max-w-7xl z-10"
+        style={{
+          top: "15%",
+          left: "22%",
+          transform: "translateX(-10%)",
+          width: "90%",
+          maxWidth: "800px",
+          textAlign: "left",
+        }}
+      >
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          Your finances<br />all in one place
+        </h1>
+        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
+        Bujeti is Africa’s most loved spend management platform that tracks expenses, reimbursements, and invoices for financial efficiency on the go.
+        </p>
+        <Button 
+          className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-2xl transition-all duration-200 border-2 border-transparent bg-gradient-to-r from-white via-white to-white hover:from-green-50 hover:via-white hover:to-green-50 ring-2 ring-green-400/20 hover:ring-green-400/40 shadow-lg hover:shadow-green-400/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(34, 197, 93, 0.1) 0%, white 15%, white 85%, rgba(34, 197, 93, 0.1) 100%)',
+            borderImage: 'linear-gradient(135deg, rgba(34, 197, 93, 0.3), transparent, rgba(34, 197, 93, 0.3)) 1',
+          }}
+        >
+          SEE IN ACTION →
+        </Button>
+      </section>
 
       <div
         className="min-h-max-content"
         style={{
           position: "absolute",
-          top: "50%",
+          top: "55%",
           left: "50%",
           transform: "translateX(-50%)",
           width: "67.11%",

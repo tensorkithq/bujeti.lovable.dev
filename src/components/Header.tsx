@@ -41,8 +41,8 @@ const Header = () => {
         </div>
 
         {/* Sign In Button */}
-        <div className="flex items-center">
-          <Button variant="outline" size="sm">
+        <div className="flex items-center  ">
+          <Button variant="outline" size="sm" className="hover:bg-gray-500/30 hover:text-gray-50">
             Sign In
           </Button>
         </div>
