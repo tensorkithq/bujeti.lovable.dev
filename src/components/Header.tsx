@@ -21,10 +21,11 @@ const Header = () => {
           {/* Navigation Menu */}
           <nav className="hidden md:flex items-center gap-6">
             <a 
-              href="#" 
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
+              <Link to="/">
               Product
+              </Link>
             </a>
             <Link 
               to="/pricing" 
