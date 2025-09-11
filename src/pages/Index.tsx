@@ -1,13 +1,15 @@
 import Hero from '../blocks/Hero';
+import Features from '../blocks/Features';
 import Header from '../components/Header';
 
 const Index = () => {
   return (
-    <main className="min-h-screen relative">
-      <section className="relative">
-      <Header />
-      <Hero />
-      </section>
+    <main className="min-h-[100vh] relative ">
+      <header className="relative">
+        <Header />
+        <Hero />
+      </header>
+      <Features />
     </main>
   );
 };

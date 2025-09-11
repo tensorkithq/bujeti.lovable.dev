@@ -14,7 +14,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Familjen Grotesk', 'sans-serif'],
+        title: ['"General Sans", sans-serif'],
+        sans: ['"Instrument Sans", sans-serif'],
+        'libre-baskerville': ['"Libre Baskerville"', 'serif'],
+      },
+      fontSize: {
+        '88': ['5.5rem', '1'],
       },
       colors: {
         'laser-primary': 'hsl(var(--laser-primary))',
