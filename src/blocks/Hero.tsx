@@ -2,37 +2,40 @@ import React, { useRef } from "react";
 import LaserFlow from "../components/LaserFlow";
 import { Button } from "@/components/ui/button";
 
-
-
 const HeroBottom = () => {
   return (
     <section className="absolute bottom-0 px-[17.1rem] md:px-[15.3rem] w-full bg-transparent text-white overflow-hidden z-20">
-      <div 
+      <div
         className="absolute top-0 left-0 w-full h-96 pointer-events-none"
         style={{
-          filter: 'blur(120px)',
+          filter: "blur(120px)",
         }}
       />
-      
+
       {/* Additional subtle gradient overlay */}
-      <div 
+      <div
         className="absolute top-0 left-0 w-full h-64 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center bottom, rgba(159, 255, 89, 0.05) 0%, transparent 70%)',
+          background:
+            "radial-gradient(ellipse at center bottom, rgba(159, 255, 89, 0.05) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto py-8">
         <div className="text-left mb-8">
-          <p className="text-gray-400 text-lg mb-4">Built for businesses at every stage:</p>
-          
+          <p className="text-gray-400 text-lg mb-4">
+            Built for businesses at every stage:
+          </p>
+
           <div className="flex flex-wrap justify-start gap-6 mt-8">
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">Expense Management</span>
             </div>
             <span className="text-gray-600">•</span>
             <div className="flex items-center gap-2">
-              <span className="text-white font-medium">Payments Automation</span>
+              <span className="text-white font-medium">
+                Payments Automation
+              </span>
             </div>
             <span className="text-gray-600">•</span>
             <div className="flex items-center gap-2">
@@ -56,8 +59,6 @@ const HeroBottom = () => {
     </section>
   );
 };
-
-
 
 const HeroMockup = () => {
   return (
@@ -114,7 +115,8 @@ const HeroMockup = () => {
               alt="Bujeti App Mockup"
               className="w-full h-full object-cover"
               style={{
-                filter: "invert(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
+                filter:
+                  "invert(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
                 objectFit: "cover",
               }}
             />
@@ -130,108 +132,114 @@ export default function HeroBlock() {
 
   return (
     <>
-    <div
-      style={{
-        height: "133vh",
-        position: "relative",
-        overflow: "hidden",
-      }}
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const el = revealImgRef.current;
-        if (el) {
-          el.style.setProperty("--mx", `${x}px`);
-          el.style.setProperty("--my", `${y + rect.height * 0.5}px`);
-        }
-      }}
-      onMouseLeave={() => {
-        const el = revealImgRef.current;
-        if (el) {
-          el.style.setProperty("--mx", "-9999px");
-          el.style.setProperty("--my", "-9999px");
-        }
-      }}
-    >
-      <LaserFlow
-        horizontalBeamOffset={0.09}
-        verticalBeamOffset={-0.0813}
-        color="#9fff59"
-        horizontalSizing={0.5}
-        verticalSizing={3}
-        wispDensity={1}
-        wispSpeed={15}
-        wispIntensity={5}
-        flowSpeed={0.45}
-        flowStrength={0.158}
-        /**
-         * Fog intensity doesn't render well on Safari
-         * Reduce to 0.002 for compatibility with Safari
-         */
-        fogIntensity={0.17}
-        fogScale={0.578}
-        fogFallSpeed={0.3}
-        decay={1.5}
-        falloffStart={1.5}
-      />
-
-      {/* Hero Text Section */}
-      <section
-        className="absolute max-w-7xl z-10"
-        style={{
-          top: "15%",
-          left: "22%",
-          transform: "translateX(-10%)",
-          width: "90%",
-          maxWidth: "800px",
-          textAlign: "left",
-        }}
-      >
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          Your finances<br />all in one place
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
-        Bujeti is Africa’s most loved spend management platform that tracks expenses, reimbursements, and invoices for financial efficiency on the go.
-        </p>
-        <div 
-         className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200"
-         style={{
-           background: 'linear-gradient(135deg, rgba(159, 255, 89, 0.3), transparent, rgba(159, 255, 89, 0.3))',
-         }}
-        >
-         <Button 
-           className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-[14px] transition-all duration-200"
-           style={{
-             background: 'linear-gradient(135deg, rgba(159, 255, 89, 0.1) 0%, white 15%, white 85%, rgba(159, 255, 89, 0.1) 100%)',
-           }}
-         >
-           SEE IN ACTION <span className="mb-0.5">→</span>
-         </Button>
-       </div>
-      </section>
- 
-       <div
-        className="min-h-max-content"
-        style={{
-          position: "absolute",
-          top: "55%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "67.11%",
-          color: "white",
-          display: "flex",
-          zIndex: 6,
-        }}
-      >
-        <HeroMockup />
-      </div>
-
-      {/* Start Dotted Grid Effect */}
       <div
-        className="absolute min-h-full inset-0"
         style={{
-          background: `
+          height: "133vh",
+          position: "relative",
+          overflow: "hidden",
+        }}
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const el = revealImgRef.current;
+          if (el) {
+            el.style.setProperty("--mx", `${x}px`);
+            el.style.setProperty("--my", `${y + rect.height * 0.5}px`);
+          }
+        }}
+        onMouseLeave={() => {
+          const el = revealImgRef.current;
+          if (el) {
+            el.style.setProperty("--mx", "-9999px");
+            el.style.setProperty("--my", "-9999px");
+          }
+        }}
+      >
+        <LaserFlow
+          horizontalBeamOffset={0.09}
+          verticalBeamOffset={-0.0813}
+          color="#9fff59"
+          horizontalSizing={0.5}
+          verticalSizing={3}
+          wispDensity={1}
+          wispSpeed={15}
+          wispIntensity={5}
+          flowSpeed={0.45}
+          flowStrength={0.158}
+          /**
+           * Fog intensity doesn't render well on Safari
+           * Reduce to 0.002 for compatibility with Safari
+           */
+          fogIntensity={0.17}
+          fogScale={0.578}
+          fogFallSpeed={0.3}
+          decay={1.5}
+          falloffStart={1.5}
+        />
+
+        {/* Hero Text Section */}
+        <section
+          className="absolute max-w-7xl z-10"
+          style={{
+            top: "15%",
+            left: "22%",
+            transform: "translateX(-10%)",
+            width: "90%",
+            maxWidth: "800px",
+            textAlign: "left",
+          }}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Your finances
+            <br />
+            all in one place
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
+            Bujeti is Africa’s most loved spend management platform that tracks
+            expenses, reimbursements, and invoices for financial efficiency on
+            the go.
+          </p>
+          <div
+            className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(159, 255, 89, 0.3), transparent, rgba(159, 255, 89, 0.3))",
+            }}
+          >
+            <Button
+              className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-[14px] transition-all duration-200"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(159, 255, 89, 0.1) 0%, white 15%, white 85%, rgba(159, 255, 89, 0.1) 100%)",
+              }}
+            >
+              SEE IN ACTION <span className="mb-0.5">→</span>
+            </Button>
+          </div>
+        </section>
+
+        <div
+          className="min-h-max-content"
+          style={{
+            position: "absolute",
+            top: "55%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "67.11%",
+            color: "white",
+            display: "flex",
+            zIndex: 6,
+          }}
+        >
+          <HeroMockup />
+        </div>
+
+        {/* Start Dotted Grid Effect */}
+        <div
+          className="absolute min-h-full inset-0"
+          style={{
+            background: `
               repeating-linear-gradient(
                 0deg,
                 transparent,
@@ -247,92 +255,93 @@ export default function HeroBlock() {
                 rgba(159, 255, 89, 0.03) 4px
               )
             `,
-          mixBlendMode: "screen",
-          opacity: 0.5,
-          filter: "contrast(1.2)",
-          WebkitMaskImage:
-            "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
-          maskImage:
-            "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
-        }}
-      />
-      {/* End Dotted Grid Effect */}
+            mixBlendMode: "screen",
+            opacity: 0.5,
+            filter: "contrast(1.2)",
+            WebkitMaskImage:
+              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
+            maskImage:
+              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
+          }}
+        />
+        {/* End Dotted Grid Effect */}
 
-      {/* Start Reveal Effect */}
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "inherit",
-          top: "-50%",
-          zIndex: 5,
-          pointerEvents: "none",
-        }}
-      >
-        <img
-          ref={revealImgRef}
-          /**
-           * @NOTE:
-           * Bujeti app is a white based theme, so we need to invert the
-           * color of the image properly blend. For this demo, we will not use their assets.
-           *      filter: "invert(98%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
-           *      src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
-           */
-          // Preffered Screenshot from Dribbble https://dribbble.com/shots/25900652-Qiespend-AI-Powered-Fintech-Dashboard
-          src="https://cdn.dribbble.com/userupload/42921161/file/original-7c578605b303df0ab822981cede61ea9.png?resize=1024x768&vertical=center"
-          // src="https://cdn.dribbble.com/userupload/42921159/file/original-b85951904fcd673fd818f99a8a32e661.png?resize=1024x768&vertical=center"
-          alt="Reveal effect"
+        {/* Start Reveal Effect */}
+        <div
           style={{
             position: "absolute",
             width: "100%",
-            top: "30%",
-            //@ts-ignore
-            "--mx": "-9999px",
-            //@ts-ignore
-            "--my": "-9999px",
-            mixBlendMode: "lighten",
-            opacity: 0.3,
-            WebkitMaskImage:
-              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)",
-            maskImage:
-              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)",
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
+            height: "inherit",
+            top: "-50%",
+            zIndex: 5,
+            pointerEvents: "none",
           }}
-        />
-        {/* Very subtle effect, you almost won't notice it,
+        >
+          <img
+            ref={revealImgRef}
+            /**
+             * @NOTE:
+             * Bujeti app is a white based theme, so we need to invert the
+             * color of the image properly blend. For this demo, we will not use their assets.
+             *      filter: "invert(98%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
+             *      src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
+             */
+            // Preffered Screenshot from Dribbble https://dribbble.com/shots/25900652-Qiespend-AI-Powered-Fintech-Dashboard
+            src="https://cdn.dribbble.com/userupload/42921161/file/original-7c578605b303df0ab822981cede61ea9.png?resize=1024x768&vertical=center"
+            // src="https://cdn.dribbble.com/userupload/42921159/file/original-b85951904fcd673fd818f99a8a32e661.png?resize=1024x768&vertical=center"
+            alt="Reveal effect"
+            style={{
+              position: "absolute",
+              width: "100%",
+              top: "30%",
+              //@ts-ignore
+              "--mx": "-9999px",
+              //@ts-ignore
+              "--my": "-9999px",
+              mixBlendMode: "lighten",
+              opacity: 0.3,
+              WebkitMaskImage:
+                "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)",
+              maskImage:
+                "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+            }}
+          />
+          {/* Very subtle effect, you almost won't notice it,
          but it's there, modify opacity to see it 
          */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               radial-gradient(circle, rgba(159, 255, 89, 0.8) 1px, transparent 1px),
               radial-gradient(circle, rgba(159, 255, 89, 0.4) 1px, transparent 1px)
             `,
-            backgroundSize: "20px 20px, 10px 10px",
-            backgroundPosition: "0 0, 5px 5px",
-            mixBlendMode: "overlay",
-            opacity: 0.062,
-            left: "40%",
-            width: "40%",
-            filter: "blur(0.3px)",
-            WebkitMaskImage:
-              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
-            maskImage:
-              "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
-          }}
-        />
-        {/* End Reveal Effect */}
-      </div>
-        <div 
+              backgroundSize: "20px 20px, 10px 10px",
+              backgroundPosition: "0 0, 5px 5px",
+              mixBlendMode: "overlay",
+              opacity: 0.062,
+              left: "40%",
+              width: "40%",
+              filter: "blur(0.3px)",
+              WebkitMaskImage:
+                "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
+              maskImage:
+                "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
+            }}
+          />
+          {/* End Reveal Effect */}
+        </div>
+        <div
           className="absolute bottom-0 left-0 w-full h-96 pointer-events-none z-10"
           style={{
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
+            background:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
           }}
         />
         <HeroBottom />
-    </div>
-        </>
+      </div>
+    </>
   );
 }

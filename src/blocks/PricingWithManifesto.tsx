@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import NestedBorderPricingCard from '@/components/NestedBorderPricingCard';
+import React, { useState } from "react";
+import NestedBorderPricingCard from "@/components/NestedBorderPricingCard";
 
 const ManifestoText = () => {
   return (
@@ -7,19 +7,29 @@ const ManifestoText = () => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-3xl leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
           <p>
-            The Bujeti team prioritizes open software, ensuring Bujeti remains free. To sustain cloud operations and further development, cloud users will be charged for consumed cloud resources. These resources currently fall into three categories: storage, network and compute.
+            The Bujeti team prioritizes open software, ensuring Bujeti remains
+            free. To sustain cloud operations and further development, cloud
+            users will be charged for consumed cloud resources. These resources
+            currently fall into three categories: storage, network and compute.
           </p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
           <p>
-            Storage charges depend on data size, excluding Bujeti objects but including attachments. Users can have unlimited Bujeti objects without storage limitations, but documents, images and videos are counted based on the plan.
+            Storage charges depend on data size, excluding Bujeti objects but
+            including attachments. Users can have unlimited Bujeti objects
+            without storage limitations, but documents, images and videos are
+            counted based on the plan.
           </p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
-          <p>
-            Network charges apply only to audio and video calls.
-          </p>
+          <p>Network charges apply only to audio and video calls.</p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
           <p>
-            Compute resource charges will apply to the upcoming <span className="bg-gradient-to-r from-cyan-300 via-blue-500 to-purple-400 bg-clip-text text-transparent">Bujeti AI and Bujeti MetaBrain</span> features, with costs assured to be no higher than industry leaders like OpenAI. Users can pay for these services directly via their OpenAI accounts.
+            Compute resource charges will apply to the upcoming{" "}
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-500 to-purple-400 bg-clip-text text-transparent">
+              Bujeti AI and Bujeti MetaBrain
+            </span>{" "}
+            features, with costs assured to be no higher than industry leaders
+            like OpenAI. Users can pay for these services directly via their
+            OpenAI accounts.
           </p>
         </div>
       </div>
@@ -27,80 +37,81 @@ const ManifestoText = () => {
   );
 };
 
-
-
 const pricingPlans = [
   {
-    name: 'Basic',
-    price: '₦8,400',
-    description: 'Get started with essential tools to manage your business expenses.',
+    name: "Basic",
+    price: "₦8,400",
+    description:
+      "Get started with essential tools to manage your business expenses.",
     features: [
-      '2 users',
-      '₦3,000 per additional user',
-      'Pay-in fees: 0.15% capped at ₦500',
-      'Payout fees: ₦50',
-      '2 bank accounts',
-      '3 levels of approvals management',
-      '2 expense policies',
-      'Basic support',
+      "2 users",
+      "₦3,000 per additional user",
+      "Pay-in fees: 0.15% capped at ₦500",
+      "Payout fees: ₦50",
+      "2 bank accounts",
+      "3 levels of approvals management",
+      "2 expense policies",
+      "Basic support",
     ],
-    buttonText: 'Get started',
+    buttonText: "Get started",
     featured: false,
   },
   {
-    name: 'Pro',
-    price: '₦16,800',
-    description: 'Advanced features for growing businesses that need more control.',
+    name: "Pro",
+    price: "₦16,800",
+    description:
+      "Advanced features for growing businesses that need more control.",
     features: [
-      '3 users',
-      '₦5,000 per additional user',
-      'Pay-in fees: 0.1% capped at ₦200',
-      'Payout fees: ₦25',
-      '5 bank accounts',
-      '5 levels of approvals management',
-      '15 expense policies',
-      'Custom roles',
-      'Bills automation',
-      'Integrations',
-      'Standard support',
+      "3 users",
+      "₦5,000 per additional user",
+      "Pay-in fees: 0.1% capped at ₦200",
+      "Payout fees: ₦25",
+      "5 bank accounts",
+      "5 levels of approvals management",
+      "15 expense policies",
+      "Custom roles",
+      "Bills automation",
+      "Integrations",
+      "Standard support",
     ],
-    buttonText: 'Get started',
+    buttonText: "Get started",
     featured: true,
   },
   {
-    name: 'Business',
-    price: 'Custom',
-    description: 'Tailored solutions for large enterprises with specific needs.',
+    name: "Business",
+    price: "Custom",
+    description:
+      "Tailored solutions for large enterprises with specific needs.",
     features: [
-      'Custom users',
-      'Custom cost per additional user',
-      'Custom pay-in fees',
-      'Custom payout fees',
-      'Custom bank accounts',
-      'Custom approvals management',
-      'Custom expense policies',
-      'Custom roles',
-      'Bills automation',
-      'Integrations',
-      'Premium support',
+      "Custom users",
+      "Custom cost per additional user",
+      "Custom pay-in fees",
+      "Custom payout fees",
+      "Custom bank accounts",
+      "Custom approvals management",
+      "Custom expense policies",
+      "Custom roles",
+      "Bills automation",
+      "Integrations",
+      "Premium support",
     ],
-    buttonText: 'Contact sales',
+    buttonText: "Contact sales",
     featured: false,
   },
 ];
 
 // Define border colors for each plan
 const borderColors = {
-  Basic: { outerColor: '#00d4ff', innerColor: '#00d4ff' },
-  Pro: { outerColor: '#ff6b9d', innerColor: '#ff6b9d' },
-  Business: { outerColor: '#a855f7', innerColor: '#a855f7' },
+  Basic: { outerColor: "#00d4ff", innerColor: "#00d4ff" },
+  Pro: { outerColor: "#ff6b9d", innerColor: "#ff6b9d" },
+  Business: { outerColor: "#a855f7", innerColor: "#a855f7" },
 };
 
 const PricingWithManifesto = () => {
-  const [selectedPlan, setSelectedPlan] = useState('Pro'); // Default to 'Pro'
+  const [selectedPlan, setSelectedPlan] = useState("Pro"); // Default to 'Pro'
 
-    return (
-      <>
+  return (
+    <>
       <style>{`
         .no-scrollbars {
           -ms-overflow-style: none;  /* IE and Edge */
@@ -112,59 +123,85 @@ const PricingWithManifesto = () => {
       `}</style>
       <div className="overflow-hidden">
         <ManifestoText />
-        <div className="safe-paddings relative left-1/2 z-10 -ml-[50vw] w-screen [mask-image:linear-gradient(270deg,rgba(115,115,115,0.00)_9.82%,#D9D9D9_30.43%,#D9D9D9_78.87%,rgba(217,217,217,0.00)_99.54%)] sm:[mask-image:none]" style={{ paddingTop: '96px', paddingBottom: '48px', marginTop: '-160px', marginBottom: '0px', overflow: 'hidden' }}>
-            <div className="max-w-7xl mx-auto relative" style={{ height: '100%' }}>
-                <h2 className="sr-only">Bujeti pricing plans</h2>
-                <div className="relative xs:px-5" style={{ overflow: 'hidden' }}>
-                    <div className="no-scrollbars flex snap-x snap-mandatory" style={{ 
-                        overflowX: 'auto', 
-                        overflowY: 'hidden',
-                        marginLeft: 'calc((100vw - 100%) / -2)',
-                        marginRight: 'calc((100vw - 100%) / -2)',
-                        paddingLeft: 'calc((100vw - 100%) / 2)',
-                        paddingRight: 'calc((100vw - 100%) / 2)',
-                    }}>
-                        <section className="flex w-max flex-shrink-0 gap-8 md:gap-6 sm:gap-4 items-start" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                            {pricingPlans.map(plan => {
-                              const colors = borderColors[plan.name as keyof typeof borderColors];
-                              return (
-                                <div key={plan.name} onClick={() => setSelectedPlan(plan.name)} style={{ 
-                                  cursor: 'pointer', 
-                                  flexShrink: 0,
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  minHeight: '500px'
-                                }}>
-                                  <NestedBorderPricingCard
-                                    plan={plan}
-                                    {...colors}
-                                    isSelected={selectedPlan === plan.name}
-                                  />
-                                </div>
-                              );
-                            })}
-                        </section>
-                    </div>
-                </div>
+        <div
+          className="safe-paddings relative left-1/2 z-10 -ml-[50vw] w-screen [mask-image:linear-gradient(270deg,rgba(115,115,115,0.00)_9.82%,#D9D9D9_30.43%,#D9D9D9_78.87%,rgba(217,217,217,0.00)_99.54%)] sm:[mask-image:none]"
+          style={{
+            paddingTop: "96px",
+            paddingBottom: "48px",
+            marginTop: "-160px",
+            marginBottom: "0px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            className="max-w-7xl mx-auto relative"
+            style={{ height: "100%" }}
+          >
+            <h2 className="sr-only">Bujeti pricing plans</h2>
+            <div className="relative xs:px-5" style={{ overflow: "hidden" }}>
+              <div
+                className="no-scrollbars flex snap-x snap-mandatory"
+                style={{
+                  overflowX: "auto",
+                  overflowY: "hidden",
+                  marginLeft: "calc((100vw - 100%) / -2)",
+                  marginRight: "calc((100vw - 100%) / -2)",
+                  paddingLeft: "calc((100vw - 100%) / 2)",
+                  paddingRight: "calc((100vw - 100%) / 2)",
+                }}
+              >
+                <section
+                  className="flex w-max flex-shrink-0 gap-8 md:gap-6 sm:gap-4 items-start"
+                  style={{ paddingTop: "20px", paddingBottom: "20px" }}
+                >
+                  {pricingPlans.map((plan) => {
+                    const colors =
+                      borderColors[plan.name as keyof typeof borderColors];
+                    return (
+                      <div
+                        key={plan.name}
+                        onClick={() => setSelectedPlan(plan.name)}
+                        style={{
+                          cursor: "pointer",
+                          flexShrink: 0,
+                          display: "flex",
+                          alignItems: "center",
+                          minHeight: "500px",
+                        }}
+                      >
+                        <NestedBorderPricingCard
+                          plan={plan}
+                          {...colors}
+                          isSelected={selectedPlan === plan.name}
+                        />
+                      </div>
+                    );
+                  })}
+                </section>
+              </div>
             </div>
+          </div>
         </div>
         <div className="text-white overflow-hidden text-left text-xl font-libre-baskerville leading-relaxed max-w-4xl  mx-auto px-4 py-24">
-            <p>
-                Our Custom Plan is tailored to meet your unique needs and requirements. Get specific features, extra storage, or enhanced support. Flexible pricing based on your specifications.
-            </p>
-            <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
-            <p>
-                Ready to discuss your needs and get a personalized quote?
-            </p>
-            <div className="mt-8">
-                <a href="mailto:hey@bujeti.com" className="text-accent hover:underline">
-                    Contact us
-                </a>
-            </div>
+          <p>
+            Our Custom Plan is tailored to meet your unique needs and
+            requirements. Get specific features, extra storage, or enhanced
+            support. Flexible pricing based on your specifications.
+          </p>
+          <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
+          <p>Ready to discuss your needs and get a personalized quote?</p>
+          <div className="mt-8">
+            <a
+              href="mailto:hey@bujeti.com"
+              className="text-accent hover:underline"
+            >
+              Contact us
+            </a>
+          </div>
         </div>
       </div>
-      </>
-    );
-  };
-  
-  export default PricingWithManifesto; 
+    </>
+  );
+};
+
+export default PricingWithManifesto;
