@@ -67,7 +67,7 @@ export default function HeroBlock() {
           width: '100%',
           top: '-50%',
           zIndex: 5,
-          mixBlendMode: 'lighten',
+          mixBlendMode: 'darken',
           opacity: 0.3,
           pointerEvents: 'none',
           WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
