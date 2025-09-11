@@ -147,7 +147,7 @@ const fragmentShader = `
   }
 `;
 
-type LaserBorderShimmerProps = PropsWithChildren<{
+type WispyBorderProps = PropsWithChildren<{
   color?: string;
   speed?: number;
   intensity?: number;
@@ -161,12 +161,12 @@ type LaserBorderShimmerProps = PropsWithChildren<{
 }>;
 
 /**
- * LaserBorderShimmer - A flowing laser border effect that wraps its children.
+ * WispyBorder - A flowing laser border effect that wraps its children.
  * 
  * Creates a laser-like border with dynamic wisp particles that continuously
  * flows around the component's border using a WebGL shader.
  */
-const LaserBorderShimmer: React.FC<LaserBorderShimmerProps> = ({
+const WispyBorder: React.FC<WispyBorderProps> = ({
   children,
   color = '#ff79c6', // Default to a pink laser color
   speed = 0.5,
@@ -353,4 +353,4 @@ const LaserBorderShimmer: React.FC<LaserBorderShimmerProps> = ({
   );
 };
 
-export default LaserBorderShimmer; 
+export default WispyBorder; 

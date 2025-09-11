@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ElectricBorderThree from './ElectricBorderThree';
-import LaserBorder from './LaserBorder';
-import LaserBorderShimmer from './LaserBorderShimmer';
+import WispyBorder from './WispyBorder';
 import PricingCard from './PricingCard';
 
 /**
@@ -134,19 +133,19 @@ const ElectricBorderComparison: React.FC = () => {
           </ElectricBorderThree>
         </div>
 
-        {/* LaserBorderShimmer Pricing Card - Magenta */}
+        {/* WispyBorder Pricing Card - Magenta */}
         <div>
-          <LaserBorderShimmer {...getBorderProps('#ff6b9d', 'laser')}>
+          <WispyBorder {...getBorderProps('#ff6b9d', 'laser')}>
             <PricingCard plan={pricingPlans.professional} />
-          </LaserBorderShimmer>
+          </WispyBorder>
         </div>
 
-        {/* Nested Composition: LaserBorder inside ElectricBorderThree - Purple/Gold */}
+        {/* Nested Composition: WispyBorder inside ElectricBorderThree - Purple/Gold */}
         <div>
-          <ElectricBorderThree {...getBorderProps('#fbbf24', 'electric')}>
-            <LaserBorder {...{ ...getBorderProps('#fbbf24', 'laser'), style: { borderRadius: "20px" } }}>
+          <ElectricBorderThree {...getBorderProps('#a855f7', 'electric')}>
+            <WispyBorder {...{ ...getBorderProps('#fbbf24', 'laser'), style: { borderRadius: "20px" } }}>
               <PricingCard plan={pricingPlans.enterprise} style={{ borderRadius: 16 }} />
-            </LaserBorder>
+            </WispyBorder>
           </ElectricBorderThree>
         </div>
       </div>
@@ -165,7 +164,7 @@ const ElectricBorderComparison: React.FC = () => {
         </div>
         
         <div style={{ lineHeight: '1.8' }}>
-          <h3 style={{ color: '#ff6b9d', marginTop: '2rem' }}>Professional Plan - LaserBorderShimmer (Magenta)</h3>
+          <h3 style={{ color: '#ff6b9d', marginTop: '2rem' }}>Professional Plan - WispyBorder (Magenta)</h3>
           <ul style={{ paddingLeft: '1.5rem' }}>
             <li><strong>Border Effect:</strong> Continuous flowing laser with particle wisps and a shimmering overlay</li>
             <li><strong>Color Scheme:</strong> Vibrant magenta (#ff6b9d) for professional appeal</li>
@@ -178,23 +177,11 @@ const ElectricBorderComparison: React.FC = () => {
           <h3 style={{ color: '#a855f7', marginTop: '2rem' }}>Enterprise Plan - Nested Composition (Purple/Gold)</h3>
           <ul style={{ paddingLeft: '1.5rem' }}>
             <li><strong>Outer Border:</strong> Purple electric border (#a855f7) with interactive lightning</li>
-            <li><strong>Inner Border:</strong> Gold laser flow (#fbbf24) with continuous animation</li>
+            <li><strong>Inner Border:</strong> Gold wispy flow (#fbbf24) with continuous animation</li>
             <li><strong>Layered Effects:</strong> Premium dual-border composition for maximum visual impact</li>
             <li><strong>Best For:</strong> High-tier plans requiring sophisticated, premium presentation</li>
           </ul>
         </div>
-
-        <h3 style={{ marginTop: '2rem', color: '#ff7df9' }}>Color-Driven Design Strategy:</h3>
-        <ul style={{ lineHeight: '1.8', paddingLeft: '1.5rem' }}>
-          <li><strong>Cyan Starter:</strong> Approachable, modern color for new users</li>
-          <li><strong>Magenta Professional:</strong> Bold, confident color for business users</li>
-          <li><strong>Purple/Gold Enterprise:</strong> Luxurious combination conveying premium value</li>
-          <li><strong>Configurable Colors:</strong> All border effects accept custom color props for brand alignment</li>
-        </ul>
-
-        <p style={{ marginTop: '2rem', fontSize: '0.9rem', opacity: 0.7 }}>
-          Each pricing tier uses carefully chosen colors and border effects to communicate value hierarchy and target audience appeal.
-        </p>
       </div>
     </div>
   );

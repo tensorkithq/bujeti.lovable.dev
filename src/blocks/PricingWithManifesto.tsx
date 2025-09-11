@@ -1,11 +1,11 @@
-import React from 'react';
-import PricingCard from '@/components/PricingCard';
+import React, { useState } from 'react';
+import NestedBorderPricingCard from '@/components/NestedBorderPricingCard';
 
 const ManifestoText = () => {
   return (
-    <div className="relative overflow-hidden font-libre-baskerville pb-[450px] pt-[212px] lg:pb-[400px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
+    <div className="relative overflow-hidden   pb-[200px] pt-[212px] lg:pb-[160px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="text-3xl font-light leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
+        <div className="text-3xl leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
           <p>
             The Bujeti team prioritizes open software, ensuring Bujeti remains free. To sustain cloud operations and further development, cloud users will be charged for consumed cloud resources. These resources currently fall into three categories: storage, network and compute.
           </p>
@@ -89,23 +89,66 @@ const pricingPlans = [
   },
 ];
 
+// Define border colors for each plan
+const borderColors = {
+  Basic: { outerColor: '#00d4ff', innerColor: '#00d4ff' },
+  Pro: { outerColor: '#ff6b9d', innerColor: '#ff6b9d' },
+  Business: { outerColor: '#a855f7', innerColor: '#a855f7' },
+};
+
 const PricingWithManifesto = () => {
+  const [selectedPlan, setSelectedPlan] = useState('Pro'); // Default to 'Pro'
+
     return (
+      <>
+      <style>{`
+        .no-scrollbars {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+        .no-scrollbars::-webkit-scrollbar {
+          display: none;  /* Chrome, Safari and Opera */
+        }
+      `}</style>
       <div className="overflow-hidden">
         <ManifestoText />
-        <div className="safe-paddings relative left-1/2 z-10 -my-52 -ml-[50vw] w-screen [mask-image:linear-gradient(270deg,rgba(115,115,115,0.00)_9.82%,#D9D9D9_30.43%,#D9D9D9_78.87%,rgba(217,217,217,0.00)_99.54%)] sm:[mask-image:none]">
-            <div className="max-w-7xl mx-auto relative">
+        <div className="safe-paddings relative left-1/2 z-10 -ml-[50vw] w-screen [mask-image:linear-gradient(270deg,rgba(115,115,115,0.00)_9.82%,#D9D9D9_30.43%,#D9D9D9_78.87%,rgba(217,217,217,0.00)_99.54%)] sm:[mask-image:none]" style={{ paddingTop: '96px', paddingBottom: '48px', marginTop: '-160px', marginBottom: '0px', overflow: 'hidden' }}>
+            <div className="max-w-7xl mx-auto relative" style={{ height: '100%' }}>
                 <h2 className="sr-only">Bujeti pricing plans</h2>
-                <div className="relative xs:px-5">
-                    <div className="no-scrollbars -mx-[calc((100vw-100%)/2)] flex snap-x snap-mandatory overflow-x-auto px-[calc((100vw-100%)/2)] py-[320px] xs:px-[calc((100vw-122%)/2)]">
-                        {/* <div className="flex w-max flex-shrink-0">
-                            {pricingPlans.map(plan => <PricingCard key={plan.name} plan={plan} />)}
-                        </div> */}
+                <div className="relative xs:px-5" style={{ overflow: 'hidden' }}>
+                    <div className="no-scrollbars flex snap-x snap-mandatory" style={{ 
+                        overflowX: 'auto', 
+                        overflowY: 'hidden',
+                        marginLeft: 'calc((100vw - 100%) / -2)',
+                        marginRight: 'calc((100vw - 100%) / -2)',
+                        paddingLeft: 'calc((100vw - 100%) / 2)',
+                        paddingRight: 'calc((100vw - 100%) / 2)',
+                    }}>
+                        <section className="flex w-max flex-shrink-0 gap-8 md:gap-6 sm:gap-4 items-start" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                            {pricingPlans.map(plan => {
+                              const colors = borderColors[plan.name as keyof typeof borderColors];
+                              return (
+                                <div key={plan.name} onClick={() => setSelectedPlan(plan.name)} style={{ 
+                                  cursor: 'pointer', 
+                                  flexShrink: 0,
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  minHeight: '500px'
+                                }}>
+                                  <NestedBorderPricingCard
+                                    plan={plan}
+                                    {...colors}
+                                    isSelected={selectedPlan === plan.name}
+                                  />
+                                </div>
+                              );
+                            })}
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="text-white overflow-hidden text-center text-3xl font-medium leading-relaxed max-w-4xl mx-auto px-4 pb-20">
+        <div className="text-white overflow-hidden text-left text-xl font-libre-baskerville leading-relaxed max-w-4xl  mx-auto px-4 py-24">
             <p>
                 Our Custom Plan is tailored to meet your unique needs and requirements. Get specific features, extra storage, or enhanced support. Flexible pricing based on your specifications.
             </p>
@@ -120,6 +163,7 @@ const PricingWithManifesto = () => {
             </div>
         </div>
       </div>
+      </>
     );
   };
   

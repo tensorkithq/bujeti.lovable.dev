@@ -490,7 +490,7 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
     borderRadius: calculateInnerBorderRadius(),
     background: 'transparent',
     zIndex: 15, // Above the electric canvas (zIndex: 10) but below content
-    border: `2px solid ${color}cc`, // Brighter, thicker border
+    border: `0.5px solid ${color}cc`, // Brighter, thicker border
     boxShadow: `0 0 12px ${color}99, 0 0 24px ${color}66`, // Strong glow effect
     pointerEvents: 'none',
     transition: 'border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease',
@@ -518,8 +518,9 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
     background: `radial-gradient(circle at center, ${color}25 0%, ${color}12 40%, transparent 70%)`,
     filter: 'blur(25px)',
     pointerEvents: 'none',
-    opacity: disabled ? 0 : intensity * 0.6,
+    opacity: disabled ? 0.2 : intensity * 0.6, // Show a subtle glow when disabled
     zIndex: 0,
+    transition: 'opacity 0.3s ease',
   };
 
   const innerGlowStyle: CSSProperties = {
@@ -529,8 +530,10 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
     background: `radial-gradient(circle at center, ${color}40 0%, ${color}25 30%, transparent 60%)`,
     filter: 'blur(15px)',
     pointerEvents: 'none',
-    opacity: disabled ? 0 : intensity * 0.7,
+    boxShadow: `0 0 2px ${color}99, 0 0 4px ${color}03`, 
+    opacity: disabled ? 0.25 : intensity * 0.6, // Show a subtle glow when disabled
     zIndex: 1,
+    transition: 'opacity 0.3s ease',
   };
 
 
@@ -539,7 +542,7 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
       <div className={className} style={containerStyle}>
         <div style={{ 
           ...contentStyle, 
-          border: `2px solid ${color}33`,
+          border: `0px solid ${color}33`,
         }}>
           {children}
         </div>
