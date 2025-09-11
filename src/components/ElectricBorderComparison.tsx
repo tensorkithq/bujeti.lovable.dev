@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import ElectricBorderThree from './ElectricBorderThree';
 import ElectricBorderClean from './ElectricBorderClean';
+import LaserBorder from './LaserBorder';
 
 /**
  * Comparison component to test performance of ElectricBorder implementations
  */
 const ElectricBorderComparison: React.FC = () => {
-  const [version, setVersion] = useState<'clean' | 'three'>('three');
+  const [version, setVersion] = useState<'clean' | 'three' | 'laser'>('laser');
   const [disabled, setDisabled] = useState(false);
   const [selectedTier, setSelectedTier] = useState<'common' | 'rare' | 'epic'>('rare');
   
@@ -30,12 +31,16 @@ const ElectricBorderComparison: React.FC = () => {
   // Much more intense electric border settings
   const getElectricProps = (tier: 'common' | 'rare' | 'epic') => {
     const baseProps = {
-      speed: version === 'three' ? 8.0 : 2.8,  // Good animation speed
-      thickness: version === 'three' ? 22.15 : 0.007,  // Much thicker for visibility
-      intensity: 8.0,  // Very high intensity
+      speed: version === 'three' ? 2.0 : (version === 'clean' ? 2.8 : 0.4),
+      thickness: version === 'three' ? 22.15 : (version === 'clean' ? 0.007 : 0.012),
+      intensity: 2.0,
       noise: 44.0,  // Full noise for organic movement
-      style: { borderRadius: "32px" },
-      disabled
+      style: { borderRadius: "38px" },
+      disabled,
+      // Laser-specific props for a nice default look
+      wispDensity: 1.2,
+      wispSpeed: 10.0,
+      wispIntensity: 6.0,
     };
 
     // Different colors for each tier - using very bright colors
@@ -51,7 +56,11 @@ const ElectricBorderComparison: React.FC = () => {
     }
   };
 
-  const ElectricBorder = version === 'three' ? ElectricBorderThree : ElectricBorderClean;
+  const ElectricBorder = version === 'three' 
+    ? ElectricBorderThree 
+    : version === 'clean' 
+      ? ElectricBorderClean
+      : LaserBorder;
 
   return (
     <div style={{ 
@@ -98,6 +107,23 @@ const ElectricBorderComparison: React.FC = () => {
           ElectricBorderClean (Optimized)
         </button>
         
+        <button 
+          onClick={() => setVersion('laser')}
+          style={{
+            padding: '0.75rem 1.5rem',
+            background: version === 'laser' ? '#ff79c6' : '#1a1a2a',
+            color: version === 'laser' ? '#000' : '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            fontWeight: '600',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          LaserBorder (Flowing)
+        </button>
+
         <button 
           onClick={() => setDisabled(!disabled)}
           style={{
@@ -480,13 +506,25 @@ const ElectricBorderComparison: React.FC = () => {
           </div>
         )}
 
+        {version === 'laser' && (
+          <div style={{ lineHeight: '1.8' }}>
+            <h3 style={{ color: '#ff79c6', marginTop: '2rem' }}>LaserBorder - Flowing Wisp Effect</h3>
+            <ul style={{ paddingLeft: '1.5rem' }}>
+              <li><strong>Strategy:</strong> Combines border-following logic with flowing wisp particles from LaserFlow.</li>
+              <li><strong>Visual Effect:</strong> A main "beam" travels around the border, accompanied by detailed, flowing micro-streaks (wisps).</li>
+              <li><strong>Animation:</strong> The entire effect of beam and wisps continuously circulates around the element.</li>
+              <li><strong>Performance:</strong> Fully GPU-accelerated for smooth, continuous animation.</li>
+              <li><strong>Customization:</strong> Wisp density, speed, and intensity can be controlled via props.</li>
+            </ul>
+          </div>
+        )}
+
         <h3 style={{ marginTop: '2rem', color: '#ff7df9' }}>Key Differences:</h3>
         <ul style={{ lineHeight: '1.8', paddingLeft: '1.5rem' }}>
           <li><strong>ElectricBorderThree:</strong> Superior hover interaction with border-following surge effect</li>
           <li><strong>ElectricBorderClean:</strong> Cleaner implementation with radial mouse interaction</li>
-          <li><strong>Both versions:</strong> WebGL-powered for authentic lightning simulation</li>
-          <li><strong>Visual fidelity:</strong> Real plasma physics simulation vs CSS approximations</li>
-          <li><strong>Performance:</strong> GPU-accelerated rendering for smooth 60fps</li>
+          <li><strong>LaserBorder:</strong> Non-interactive, continuous flowing laser and particle effect around the border.</li>
+          <li><strong>All versions:</strong> WebGL-powered for high-fidelity, performant animations.</li>
         </ul>
 
         <p style={{ marginTop: '2rem', fontSize: '0.9rem', opacity: 0.7 }}>

@@ -212,8 +212,22 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
   disabled = false
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const maskRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mousePos = useRef({ x: -10, y: -10 });
+
+  const hexToRgba = (hex: string, alpha: number): string => {
+    let c: any;
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+        c = hex.substring(1).split('');
+        if (c.length === 3) {
+            c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c = '0x' + c.join('');
+        return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',')},${alpha})`;
+    }
+    return `rgba(255, 255, 255, ${alpha})`; // fallback
+  };
 
   useEffect(() => {
     if (!mountRef.current || disabled) return;
@@ -311,6 +325,14 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height; // Flip Y for UV space
       mousePos.current = { x, y };
+
+      if (maskRef.current) {
+        const maskRect = maskRef.current.getBoundingClientRect();
+        const x_px = e.clientX - maskRect.left;
+        const y_px = e.clientY - maskRect.top;
+        maskRef.current.style.setProperty('--mx', `${x_px}px`);
+        maskRef.current.style.setProperty('--my', `${y_px}px`);
+      }
     };
 
     const handleMouseEnter = () => setIsHovering(true);
@@ -399,10 +421,10 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
 
   const contentStyle: CSSProperties = {
     position: 'relative',
-    borderRadius: style?.borderRadius || 'inherit',
+    borderRadius: Number(style?.borderRadius) - 4 || 'inherit',
     zIndex: 20, // Above the inner mask
-    background: 'transparent', // Let the inner mask provide the background
-    padding: '20px', // Add padding to account for the inner mask
+    background: 'transparent',
+    padding: '2px',
   };
 
   // Calculate proper inner border radius to match container proportionally
@@ -461,15 +483,31 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
   // Inner mask that covers 95% of the electric border, leaving outer 5% visible (19/20)
   const innerMaskStyle: CSSProperties = {
     position: 'absolute',
-    top: '2.5%',
-    left: '2.5%',
-    right: '2.5%',
-    bottom: '2.5%',
+    top: '1%',
+    left: '1%',
+    right: '1%',
+    bottom: '1%',
     borderRadius: calculateInnerBorderRadius(),
     background: 'transparent',
     zIndex: 15, // Above the electric canvas (zIndex: 10) but below content
-    border: `1px solid ${color}40`, // Subtle glowy border
+    border: `2px solid ${color}cc`, // Brighter, thicker border
+    boxShadow: `0 0 12px ${color}99, 0 0 24px ${color}66`, // Strong glow effect
     pointerEvents: 'none',
+    transition: 'border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease',
+    // Mesh effect styles
+    backgroundImage: `
+      radial-gradient(circle, ${hexToRgba(color, 0.5)} 1px, transparent 1px),
+      radial-gradient(circle, ${hexToRgba(color, 0.3)} 1px, transparent 1px)
+    `,
+    backgroundSize: "20px 20px, 10px 10px",
+    backgroundPosition: "0 0, 5px 5px",
+    mixBlendMode: "overlay",
+    opacity: isHovering ? 1 : 0.4,
+    // Spotlight mask effect
+    WebkitMaskImage:
+      "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
+    maskImage:
+      "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,1) 0px, rgba(255,255,255,0.9) 80px, rgba(255,255,255,0.5) 160px, rgba(255,255,255,0) 240px)",
   };
 
   // Simplified glow system - reduced intensity for electric focus
@@ -522,7 +560,7 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
       </div>
       
       {/* Inner mask covering 95% (19/20) */}
-      <div style={innerMaskStyle} />
+      <div ref={maskRef} style={innerMaskStyle} />
       
       {/* Content */}
       <div style={contentStyle}>
