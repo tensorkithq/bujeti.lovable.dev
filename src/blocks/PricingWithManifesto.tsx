@@ -30,70 +30,68 @@ const ManifestoText = () => {
 
 
 const pricingPlans = [
-    {
-      name: 'Common',
-      price: '$0',
-      description: 'For individuals and teams getting started with Bujeti.',
-      features: [
-        'Unlimited users',
-        'Unlimited Bujeti Objects',
-        '10GB Storage per Workspace',
-        '10GB Video/Audio Traffic',
-        'AI — TBD',
-      ],
-      buttonText: 'Start Free',
-      featured: true,
-    },
-    {
-      name: 'Rare',
-      price: '$19',
-      priceDetails: '.99',
-      description: 'For individual creatives, freelancers, and micro-agencies.',
-      features: [
-        'Unlimited users',
-        'Unlimited Bujeti Objects',
-        '100GB Storage',
-        '100GB Video / Audio Traffic',
-        'AI — TBD',
-      ],
-      buttonText: 'Start Free',
-      featured: false,
-    },
-    {
-        name: 'Epic',
-        price: '$99',
-        priceDetails: '.99',
-        description: 'For professional creative companies and small businesses.',
-        features: [
-          'Unlimited users',
-          'Unlimited Bujeti Objects',
-          '1TB Storage',
-          '500GB Video / Audio Traffic',
-          'AI — TBD',
-        ],
-        buttonText: 'Start Free',
-        featured: false,
-      },
-      {
-        name: 'Legendary',
-        price: '$399',
-        priceDetails: '.99',
-        description: 'Best for large multiple teams that need maximum capabilities.',
-        features: [
-          'Unlimited users',
-          'Unlimited Bujeti Objects',
-          '10TB Storage',
-          '2TB Video / Audio Traffic',
-          'AI — TBD',
-        ],
-        buttonText: 'Start Free',
-        featured: false,
-      },
-  ];
+  {
+    name: 'Basic',
+    price: '₦8,400',
+    description: 'Get started with essential tools to manage your business expenses.',
+    features: [
+      '2 users',
+      '₦3,000 per additional user',
+      'Pay-in fees: 0.15% capped at ₦500',
+      'Payout fees: ₦50',
+      '2 bank accounts',
+      '3 levels of approvals management',
+      '2 expense policies',
+      'Basic support',
+    ],
+    buttonText: 'Get started',
+    featured: false,
+  },
+  {
+    name: 'Pro',
+    price: '₦16,800',
+    description: 'Advanced features for growing businesses that need more control.',
+    features: [
+      '3 users',
+      '₦5,000 per additional user',
+      'Pay-in fees: 0.1% capped at ₦200',
+      'Payout fees: ₦25',
+      '5 bank accounts',
+      '5 levels of approvals management',
+      '15 expense policies',
+      'Custom roles',
+      'Bills automation',
+      'Integrations',
+      'Standard support',
+    ],
+    buttonText: 'Get started',
+    featured: true,
+  },
+  {
+    name: 'Business',
+    price: 'Custom',
+    description: 'Tailored solutions for large enterprises with specific needs.',
+    features: [
+      'Custom users',
+      'Custom cost per additional user',
+      'Custom pay-in fees',
+      'Custom payout fees',
+      'Custom bank accounts',
+      'Custom approvals management',
+      'Custom expense policies',
+      'Custom roles',
+      'Bills automation',
+      'Integrations',
+      'Premium support',
+    ],
+    buttonText: 'Contact sales',
+    featured: false,
+  },
+];
 
 const PricingWithManifesto = () => {
     return (
-      <div className="bg-[#0D0F11]">
+      <div className="overflow-hidden">
         <ManifestoText />
         <div className="safe-paddings relative left-1/2 z-10 -my-52 -ml-[50vw] w-screen [mask-image:linear-gradient(270deg,rgba(115,115,115,0.00)_9.82%,#D9D9D9_30.43%,#D9D9D9_78.87%,rgba(217,217,217,0.00)_99.54%)] sm:[mask-image:none]">
             <div className="max-w-7xl mx-auto relative">
@@ -107,7 +105,7 @@ const PricingWithManifesto = () => {
                 </div>
             </div>
         </div>
-        <div className="text-white text-center text-3xl font-medium leading-relaxed max-w-4xl mx-auto px-4 pb-20">
+        <div className="text-white overflow-hidden text-center text-3xl font-medium leading-relaxed max-w-4xl mx-auto px-4 pb-20">
             <p>
                 Our Custom Plan is tailored to meet your unique needs and requirements. Get specific features, extra storage, or enhanced support. Flexible pricing based on your specifications.
             </p>
