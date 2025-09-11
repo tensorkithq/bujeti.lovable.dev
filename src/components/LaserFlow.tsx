@@ -2,25 +2,45 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 type Props = {
+  /** Optional CSS class name */
   className?: string;
+  /** Optional inline styles */
   style?: React.CSSProperties;
+  /** Density of micro-streak wisps @default 1 */
   wispDensity?: number;
+  /** Device pixel ratio override (defaults to window.devicePixelRatio) @default auto */
   dpr?: number;
+  /** Pointer smoothing time (seconds) @default 0.0 */
   mouseSmoothTime?: number;
+  /** How much mouse x tilts the fog volume @default 0.01 */
   mouseTiltStrength?: number;
+  /** Horizontal offset of the beam (0–1 of canvas width) @default 0.1 */
   horizontalBeamOffset?: number;
+  /** Vertical offset of the beam (0–1 of canvas height) @default 0.0 */
   verticalBeamOffset?: number;
+  /** Speed of the beam's flow modulation @default 0.35 */
   flowSpeed?: number;
+  /** Vertical sizing factor of the beam footprint @default 2.0 */
   verticalSizing?: number;
+  /** Horizontal sizing factor of the beam footprint @default 0.5 */
   horizontalSizing?: number;
+  /** Overall volumetric fog intensity @default 0.45 */
   fogIntensity?: number;
+  /** Spatial scale for the fog noise @default 0.3 */
   fogScale?: number;
+  /** Speed of wisp motion @default 15.0 */
   wispSpeed?: number;
+  /** Brightness of wisps @default 5.0 */
   wispIntensity?: number;
+  /** Strength of the beam's flow modulation @default 0.25 */
   flowStrength?: number;
+  /** Beam decay shaping for sampling envelope @default 1.1 */
   decay?: number;
+  /** Falloff start radius used in inverse-square blending @default 1.2 */
   falloffStart?: number;
+  /** Drift speed for the fog field @default 0.6 */
   fogFallSpeed?: number;
+  /** Beam color (hex) @default #FF79C6 */
   color?: string;
 };
 
