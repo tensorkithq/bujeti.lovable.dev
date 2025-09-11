@@ -1,6 +1,64 @@
 import React, { useRef } from "react";
 import LaserFlow from "../components/LaserFlow";
 import { Button } from "@/components/ui/button";
+// import HeroBottom from "@/components/HeroBottom";
+
+
+
+const HeroBottom = () => {
+  return (
+    <section className="absolute bottom-0 left-0 w-full bg-transparent text-white overflow-hidden z-20">
+      <div 
+        className="absolute top-0 left-0 w-full h-96 pointer-events-none"
+        style={{
+          filter: 'blur(120px)',
+        }}
+      />
+      
+      {/* Additional subtle gradient overlay */}
+      <div 
+        className="absolute  top-0 left-0 w-full h-64 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center bottom, rgba(159, 255, 89, 0.05) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        <div className="text-left mb-8">
+          <p className="text-gray-400 text-lg mb-4">Built for businesses at every stage:</p>
+          
+          <div className="flex flex-wrap justify-start gap-6 mt-8">
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Expense Management</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Payments Automation</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Corporate Cards</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Bank Connect</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Invoicing</span>
+            </div>
+            <span className="text-gray-600">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">Payroll</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 
 const HeroMockup = () => {
   return (
@@ -73,6 +131,7 @@ export default function HeroBlock() {
   const revealImgRef = useRef(null);
 
   return (
+    <>
     <div
       style={{
         height: "840px",
@@ -233,6 +292,14 @@ export default function HeroBlock() {
         />
         {/* End Reveal Effect */}
       </div>
+        <div 
+          className="absolute bottom-0 left-0 w-full h-96 pointer-events-none z-10"
+          style={{
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
+          }}
+        />
+        <HeroBottom />
     </div>
+        </>
   );
 }
