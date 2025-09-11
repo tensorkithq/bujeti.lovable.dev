@@ -53,9 +53,6 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
     
     varying vec2 vUv;
     
-    // DIAGNOSTIC MODE - Set to different values to test components
-    #define DEBUG_MODE 0  // 0=full effect, 1=border mask, 2=lightning, 3=UV, 4=simple test
-    
     float random(vec2 st) {
       return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
     }
@@ -64,123 +61,85 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
       vec2 uv = vUv;
       float t = time * speed;
       
-      // Calculate distance to edges
-      float distToEdges = min(
-        min(uv.x, 1.0 - uv.x),
-        min(uv.y, 1.0 - uv.y)
-      );
+      // Calculate distance to all edges
+      float distLeft = uv.x;
+      float distRight = 1.0 - uv.x;
+      float distTop = 1.0 - uv.y;
+      float distBottom = uv.y;
+      float minDist = min(min(distLeft, distRight), min(distTop, distBottom));
       
       // Create border mask
-      float borderMask = smoothstep(thickness, 0.0, distToEdges);
+      float borderMask = 1.0 - smoothstep(0.0, thickness, minDist);
       
-      // DIAGNOSTIC: Simple animated test pattern
-      if(DEBUG_MODE == 4) {
-        float testPattern = sin(uv.x * 10.0 + time) * sin(uv.y * 10.0 - time);
-        vec3 testColor = vec3(testPattern, 0.5, 1.0 - testPattern);
-        gl_FragColor = vec4(testColor, 1.0);
-        return;
+      if(borderMask < 0.01) {
+        discard;
       }
       
-      // DIAGNOSTIC: Show UV coordinates
-      if(DEBUG_MODE == 3) {
-        gl_FragColor = vec4(uv.x, uv.y, 0.0, 1.0);
-        return;
-      }
-      
-      // DIAGNOSTIC: Show border mask only
-      if(DEBUG_MODE == 1) {
-        gl_FragColor = vec4(vec3(borderMask), borderMask);
-        return;
-      }
-      
-      // Create lightning effect with clear, visible bolts
-      float lightning = 0.0;
-      
-      // Traveling waves along the border
-      float borderPosition = 0.0;
-      
-      // Determine position along border perimeter
-      if(distToEdges == uv.x) {
-        // Left edge
-        borderPosition = uv.y;
-      } else if(distToEdges == 1.0 - uv.x) {
-        // Right edge
-        borderPosition = 2.0 + uv.y;
-      } else if(distToEdges == uv.y) {
-        // Bottom edge
-        borderPosition = 1.0 + uv.x;
-      } else {
-        // Top edge
-        borderPosition = 3.0 + (1.0 - uv.x);
-      }
-      
-      // Create sharp, visible lightning bolts
-      for(float i = 0.0; i < 5.0; i++) {
-        // Create moving bright spots along the border
-        float boltPos = fract(borderPosition * 0.25 + t * 0.5 + i * 0.2);
-        
-        // Create sharp peaks at specific positions
-        float bolt = 1.0 - abs(boltPos - 0.5) * 2.0;
-        bolt = smoothstep(0.8, 0.95, bolt); // Very sharp cutoff
-        
-        // Add secondary bolts
-        float boltPos2 = fract(borderPosition * 0.5 - t * 0.3 + i * 0.3);
-        float bolt2 = 1.0 - abs(boltPos2 - 0.5) * 2.0;
-        bolt2 = smoothstep(0.85, 0.98, bolt2);
-        
-        lightning = max(lightning, max(bolt, bolt2));
-      }
-      
-      // Add constant animated streaks
-      float streak = sin(borderPosition * 20.0 + t * 5.0) * 0.5 + 0.5;
-      streak = pow(streak, 4.0);
-      lightning = max(lightning, streak * 0.5);
-      
-      // Apply to border region only
-      lightning *= borderMask;
-      
-      // DIAGNOSTIC: Show lightning only
-      if(DEBUG_MODE == 2) {
-        gl_FragColor = vec4(vec3(lightning), 1.0);
-        return;
-      }
-      
-      // Final composition
+      // Initialize final color
       vec3 finalColor = vec3(0.0);
+      float totalGlow = 0.0;
       
-      // Base glow
-      vec3 glowColor = color * borderMask * 0.3;
-      finalColor += glowColor;
-      
-      // Lightning bolts - make them VERY bright
-      vec3 boltColor = mix(color, vec3(1.0), 0.7); // Mostly white
-      finalColor += boltColor * lightning * intensity * 3.0;
-      
-      // Extra bright core
-      if(lightning > 0.1) {
-        finalColor += vec3(1.0) * pow(lightning, 0.5) * intensity;
+      // Create multiple traveling lightning bolts
+      for(float i = 0.0; i < 6.0; i++) {
+        float speed_i = 1.0 + i * 0.3;
+        float offset = i * 1.618; // Golden ratio for distribution
+        
+        // Determine position along perimeter (0-4 for full loop)
+        float perimPos = 0.0;
+        if(minDist == distBottom && uv.x > thickness && uv.x < 1.0 - thickness) {
+          perimPos = uv.x; // Bottom edge: 0-1
+        } else if(minDist == distRight && uv.y > thickness && uv.y < 1.0 - thickness) {
+          perimPos = 1.0 + uv.y; // Right edge: 1-2
+        } else if(minDist == distTop && uv.x > thickness && uv.x < 1.0 - thickness) {
+          perimPos = 3.0 - uv.x; // Top edge: 2-3
+        } else if(minDist == distLeft && uv.y > thickness && uv.y < 1.0 - thickness) {
+          perimPos = 4.0 - uv.y; // Left edge: 3-4
+        }
+        
+        // Create traveling bright spots
+        float travelPos = fract(perimPos * 0.25 + t * speed_i * 0.2 + offset);
+        
+        // Sharp bright bolt
+        float bolt = 1.0 - abs(travelPos - 0.5) * 2.0;
+        bolt = pow(bolt, 38.0); // Very sharp peak
+        bolt *= borderMask;
+        
+        // Add flickering
+        float flicker = random(vec2(floor(t * 15.0 + i), i));
+        if(flicker > 0.7) {
+          bolt *= 2.0;
+        }
+        
+        totalGlow += bolt;
       }
       
-      // Add some constant brightness to ensure visibility
-      if(borderMask > 0.1) {
-        finalColor += color * 0.1 * intensity;
+      // Add continuous electric glow along edges
+      float edgeGlow = borderMask * (0.5 + 0.5 * sin(t * 10.0));
+      totalGlow += edgeGlow * 0.3;
+      
+      // Create the final color
+      // Base blue/purple glow
+      finalColor += color * borderMask * 0.5 * intensity;
+      
+      // Bright white bolts
+      finalColor += vec3(1.0) * totalGlow * intensity * 2.0;
+      
+      // Colored glow around bolts
+      finalColor += color * totalGlow * intensity;
+      
+      // Add extra brightness at bolt peaks
+      if(totalGlow > 0.5) {
+        finalColor += vec3(1.0, 1.0, 1.0) * pow(totalGlow, 0.5) * intensity;
       }
       
-      float alpha = clamp(borderMask + lightning * 2.0, 0.0, 1.0);
-      
-      // Output with debugging info
-      #if DEBUG_MODE == 0
-        gl_FragColor = vec4(finalColor * 2.0, alpha);
-      #else
-        // This shouldn't be reached but just in case
-        gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0); // Magenta = error
-      #endif
+      // Output
+      float alpha = clamp(borderMask + totalGlow, 0.0, 1.0);
+      gl_FragColor = vec4(finalColor, alpha);
     }
   `;
 
   const hoverAmt = useRef(0);
 
-  // Add debugging hooks
   useFrame((state) => {
     if (materialRef.current) {
       // Animate time
@@ -201,16 +160,6 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
       u.speed.value = speed;
       u.noise.value = noise;
       u.color.value = new THREE.Color(color);
-      
-      // DIAGNOSTIC: Log every second to verify updates
-      if (Math.floor(state.clock.getElapsedTime()) !== Math.floor(state.clock.getElapsedTime() - 0.016)) {
-        console.log('ElectricBorder uniforms:', {
-          time: u.time.value,
-          intensity: u.intensity.value,
-          thickness: u.thickness.value,
-          color: u.color.value.getHexString()
-        });
-      }
     }
   });
 
@@ -354,14 +303,11 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
           camera={{ position: [0, 0, 1], fov: 75 }}
           gl={{ 
             alpha: true, 
-            antialias: false,  // Disable antialiasing for better performance
+            antialias: false,
             powerPreference: "high-performance",
-            preserveDrawingBuffer: true  // Ensure buffer is preserved
+            preserveDrawingBuffer: true
           }}
-          dpr={[1, 2]}  // Set device pixel ratio
-          onCreated={(state) => {
-            console.log('Canvas created, WebGL context:', state.gl);
-          }}
+          dpr={[1, 2]}
         >
           <ElectricMesh
             color={color}
