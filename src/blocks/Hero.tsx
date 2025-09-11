@@ -70,8 +70,6 @@ export default function HeroBlock() {
           mixBlendMode: 'lighten',
           opacity: 0.3,
           pointerEvents: 'none',
-          '--mx': '-9999px',
-          '--my': '-9999px',
           WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
           maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
           WebkitMaskRepeat: 'no-repeat',
