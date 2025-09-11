@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 
 const Header = () => {
   return (
-    <header className="w-full px-6 py-4 bg-background/95 backdrop-blur-sm border-b border-border/50">
+    <header className="w-full px-6 py-4 bg-transparent relative z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo and Navigation */}
         <div className="flex items-center gap-8">
