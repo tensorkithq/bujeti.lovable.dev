@@ -72,14 +72,23 @@ export default function HeroBlock() {
 
       <img
         ref={revealImgRef}
-        src="https://framerusercontent.com/images/pHN1e6PTfE62XeoFRzJMfDhw.png?scale-down-to=1024&width=1786&height=1372"
+        /** 
+         * @NOTE:
+         * Bujeti app is a white based theme, so we need to invert the 
+         * color of the image properly blend. For this demo, we will not use their assets.
+         *      filter: "invert(98%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
+         *      src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
+         */
+        // Preffered Screenshot from Dribbble https://dribbble.com/shots/25900652-Qiespend-AI-Powered-Fintech-Dashboard
+        // src="https://cdn.dribbble.com/userupload/44808861/file/16544483349dc903de7cb4677ddbcfaa.png?resize=1024x768&vertical=center"
+        src="https://cdn.dribbble.com/userupload/42921159/file/original-b85951904fcd673fd818f99a8a32e661.png?resize=1024x768&vertical=center"
         alt="Reveal effect"
         style={{
           position: 'absolute',
           width: '100%',
-          top: '-40%',
+          top: '-50%',
           zIndex: 5,
-          mixBlendMode: 'multiply',
+          mixBlendMode: 'lighten',
           opacity: 0.3,
           pointerEvents: 'none',
           WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
