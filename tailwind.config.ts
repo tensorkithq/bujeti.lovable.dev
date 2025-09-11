@@ -21,6 +21,20 @@ export default {
         'laser-secondary': 'hsl(var(--laser-secondary))',
         'laser-accent': 'hsl(var(--laser-accent))',
         'laser-glow': 'hsl(var(--laser-glow))',
+        // Brand color palette - Green/Lime variations
+        brand: {
+          50: '#e8fcef',   // lightest
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#81eea8',
+          400: '#41dd7a',
+          500: '#22c55d',  // primary brand color
+          600: '#17a34a',
+          700: '#1a8f44',
+          800: '#176936',
+          900: '#14532d',
+          950: '#052e16',  // darkest
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -43,8 +57,8 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: '#9fff59',  // bright lime accent for buttons
+          foreground: '#052e16', // dark green for contrast
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

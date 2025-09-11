@@ -35,7 +35,7 @@ export default function HeroBlock() {
       <LaserFlow
         horizontalBeamOffset={0.1}
         verticalBeamOffset={0.0}
-        color="#FF79C6"
+        color="#9fff59"
         horizontalSizing={0.74}
         verticalSizing={2}
         wispDensity={1}
@@ -59,7 +59,7 @@ export default function HeroBlock() {
         height: '60%',
         backgroundColor: '#060010',
         borderRadius: '20px',
-        border: '2px solid #FF79C6',
+        border: '2px solid #9fff59',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -68,6 +68,7 @@ export default function HeroBlock() {
         zIndex: 6
       }}>
         {/* Your content here */}
+        RENDER OUR APP MOCKUP HERE
       </div>
 
       <img
@@ -86,6 +87,10 @@ export default function HeroBlock() {
         style={{
           position: 'absolute',
           width: '100%',
+          //@ts-ignore
+          '--mx': '-9999px',
+          //@ts-ignore
+          '--my': '-9999px',
           top: '-50%',
           zIndex: 5,
           mixBlendMode: 'lighten',
@@ -96,6 +101,7 @@ export default function HeroBlock() {
           WebkitMaskRepeat: 'no-repeat',
           maskRepeat: 'no-repeat'
         }}
+        // className='mx-[-9999px] my-[-9999px]'
       />
     </div>
   );
