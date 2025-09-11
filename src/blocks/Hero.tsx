@@ -36,6 +36,18 @@ export default function HeroBlock() {
         horizontalBeamOffset={0.1}
         verticalBeamOffset={0.0}
         color="#FF79C6"
+        horizontalSizing={0.74}
+        verticalSizing={2}
+        wispDensity={1}
+        wispSpeed={15}
+        wispIntensity={5}
+        flowSpeed={0.35}
+        flowStrength={0.38}
+        fogIntensity={0.45}
+        fogScale={0.3}
+        fogFallSpeed={0.6}
+        decay={1.1}
+        falloffStart={1.2}
       />
       
       <div style={{
@@ -60,12 +72,12 @@ export default function HeroBlock() {
 
       <img
         ref={revealImgRef}
-        src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
+        src="https://framerusercontent.com/images/pHN1e6PTfE62XeoFRzJMfDhw.png?scale-down-to=1024&width=1786&height=1372"
         alt="Reveal effect"
         style={{
           position: 'absolute',
           width: '100%',
-          top: '-50%',
+          top: '-40%',
           zIndex: 5,
           mixBlendMode: 'multiply',
           opacity: 0.3,
