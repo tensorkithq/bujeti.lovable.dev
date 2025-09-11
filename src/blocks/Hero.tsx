@@ -123,8 +123,8 @@ const FeatureCaption = () => {
   );
 };
 
-export default function HeroBlock() {
-  const revealImgRef = useRef(null);
+export default function Hero() {
+  const revealImgRef = useRef<HTMLImageElement>(null);
 
   return (
     <section className="relative min-h-screen flex flex-col">
