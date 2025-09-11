@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header />
       <Hero />
     </main>
