@@ -30,10 +30,10 @@ const ElectricBorderComparison: React.FC = () => {
   // Much more intense electric border settings
   const getElectricProps = (tier: 'common' | 'rare' | 'epic') => {
     const baseProps = {
-      speed: version === 'three' ? 1.0 : 1.8,  // Good animation speed
-      thickness: version === 'three' ? 0.15 : 0.006,  // Much thicker for visibility
-      intensity: 6.0,  // Very high intensity
-      noise: 1.0,  // Full noise for organic movement
+      speed: version === 'three' ? 8.0 : 2.8,  // Good animation speed
+      thickness: version === 'three' ? 22.15 : 0.007,  // Much thicker for visibility
+      intensity: 8.0,  // Very high intensity
+      noise: 44.0,  // Full noise for organic movement
       style: { borderRadius: 24 },
       disabled
     };

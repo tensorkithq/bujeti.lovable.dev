@@ -283,9 +283,8 @@ const ElectricBorderClean: React.FC<ElectricBorderCleanProps> = ({
     position: 'relative',
     borderRadius: style?.borderRadius || 'inherit',
     zIndex: 1,
-    background: 'rgba(0, 0, 0, 0.8)', // Darker background for better contrast
-    backdropFilter: 'blur(12px)',
-    boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.5)', // Inner shadow for depth
+    background: 'transparent', // Made transparent
+    // Removed backdropFilter and boxShadow for full transparency
   };
 
   const glowStyle: CSSProperties = {
@@ -327,7 +326,11 @@ const ElectricBorderClean: React.FC<ElectricBorderCleanProps> = ({
           gl={{ 
             alpha: true, 
             antialias: true,
-            powerPreference: "high-performance"
+            powerPreference: "high-performance",
+            premultipliedAlpha: false
+          }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0); // Transparent background
           }}
         >
           <ElectricMesh
