@@ -31,7 +31,7 @@ const Header = () => {
               Pricing
             </Link>
             <a
-              href="#"
+              href="https://bujeti.com/resources"
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               Resources
@@ -45,8 +45,9 @@ const Header = () => {
             variant="outline"
             size="sm"
             className="hover:bg-gray-500/30 hover:text-gray-50"
+            asChild
           >
-            Sign In
+            <a href="https://bujeti.com/signin">Sign In</a>
           </Button>
         </div>
       </div>
