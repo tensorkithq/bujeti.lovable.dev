@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -25,12 +26,12 @@ const Header = () => {
             >
               Product
             </a>
-            <a 
-              href="#" 
+            <Link 
+              to="/pricing" 
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               Pricing
-            </a>
+            </Link>
             <a 
               href="#" 
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
