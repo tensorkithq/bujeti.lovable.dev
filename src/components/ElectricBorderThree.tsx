@@ -469,7 +469,6 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
     background: 'transparent',
     zIndex: 15, // Above the electric canvas (zIndex: 10) but below content
     border: `1px solid ${color}40`, // Subtle glowy border
-    boxShadow: `0 0 20px ${color}60`,
     pointerEvents: 'none',
   };
 

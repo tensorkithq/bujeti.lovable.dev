@@ -34,7 +34,7 @@ const ElectricBorderComparison: React.FC = () => {
       thickness: version === 'three' ? 22.15 : 0.007,  // Much thicker for visibility
       intensity: 8.0,  // Very high intensity
       noise: 44.0,  // Full noise for organic movement
-      style: { borderRadius: 24 },
+      style: { borderRadius: "32px" },
       disabled
     };
 
