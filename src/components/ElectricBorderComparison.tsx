@@ -30,24 +30,24 @@ const ElectricBorderComparison: React.FC = () => {
   // Much more intense electric border settings
   const getElectricProps = (tier: 'common' | 'rare' | 'epic') => {
     const baseProps = {
-      speed: version === 'three' ? 1.2 : 1.8,  // Moderate speed for visible flow
-      thickness: version === 'three' ? 0.02 : 0.035,  // Thinner for sharper lightning bolts
-      intensity: 3.0,  // High intensity for bright bolts
-      noise: 0.8,  // More noise for organic movement
+      speed: version === 'three' ? 1.5 : 1.8,  // Good animation speed
+      thickness: version === 'three' ? 0.06 : 0.035,  // Thicker for better visibility
+      intensity: 4.0,  // Very high intensity
+      noise: 1.0,  // Full noise for organic movement
       style: { borderRadius: 24 },
       disabled
     };
 
-    // Different colors for each tier - using brighter, more electric colors
+    // Different colors for each tier - using very bright colors
     switch(tier) {
       case 'common':
-        return { ...baseProps, color: '#a78bfa' }; // Brighter purple
+        return { ...baseProps, color: '#c084fc' }; // Bright purple
       case 'rare':
-        return { ...baseProps, color: '#38bdf8' }; // Brighter blue
+        return { ...baseProps, color: '#60a5fa' }; // Bright blue
       case 'epic':
-        return { ...baseProps, color: '#f472b6' }; // Brighter pink
+        return { ...baseProps, color: '#fb7185' }; // Bright pink-red
       default:
-        return { ...baseProps, color: '#38bdf8' };
+        return { ...baseProps, color: '#60a5fa' };
     }
   };
 

@@ -53,170 +53,130 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
     
     varying vec2 vUv;
     
-    // Hash function for randomness
-    float hash(vec2 p) {
-      p = fract(p * vec2(234.34, 435.345));
-      p += dot(p, p + 34.23);
-      return fract(p.x * p.y);
+    // Simple random
+    float random(vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
     }
     
-    // Noise function
-    float noise2D(vec2 p) {
-      vec2 i = floor(p);
-      vec2 f = fract(p);
-      f = f * f * (3.0 - 2.0 * f);
+    // Simple noise
+    float noise2d(vec2 st) {
+      vec2 i = floor(st);
+      vec2 f = fract(st);
       
-      float a = hash(i);
-      float b = hash(i + vec2(1.0, 0.0));
-      float c = hash(i + vec2(0.0, 1.0));
-      float d = hash(i + vec2(1.0, 1.0));
+      float a = random(i);
+      float b = random(i + vec2(1.0, 0.0));
+      float c = random(i + vec2(0.0, 1.0));
+      float d = random(i + vec2(1.0, 1.0));
       
-      return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
-    }
-    
-    // Fractal noise for lightning
-    float fbm(vec2 p, float octaves) {
-      float value = 0.0;
-      float amplitude = 0.5;
-      float frequency = 2.0;
+      vec2 u = f * f * (3.0 - 2.0 * f);
       
-      for(float i = 0.0; i < 5.0; i++) {
-        if(i >= octaves) break;
-        value += amplitude * noise2D(p * frequency);
-        amplitude *= 0.5;
-        frequency *= 2.0;
-      }
-      return value;
-    }
-    
-    // Get distance to closest edge and which edge
-    vec4 getEdgeInfo(vec2 uv) {
-      float distLeft = uv.x;
-      float distRight = 1.0 - uv.x;
-      float distBottom = uv.y;
-      float distTop = 1.0 - uv.y;
-      
-      float minDist = min(min(distLeft, distRight), min(distBottom, distTop));
-      
-      // Return: (minDist, edgeId, position along edge, 0)
-      // edgeId: 0=bottom, 1=right, 2=top, 3=left
-      if(minDist == distBottom) return vec4(minDist, 0.0, uv.x, 0.0);
-      else if(minDist == distRight) return vec4(minDist, 1.0, uv.y, 0.0);
-      else if(minDist == distTop) return vec4(minDist, 2.0, 1.0 - uv.x, 0.0);
-      else return vec4(minDist, 3.0, 1.0 - uv.y, 0.0);
-    }
-    
-    // Create lightning bolt
-    float createLightning(vec2 uv, float t, float seed) {
-      vec4 edgeInfo = getEdgeInfo(uv);
-      float distToEdge = edgeInfo.x;
-      float edgeId = edgeInfo.y;
-      float posAlongEdge = edgeInfo.z;
-      
-      // Only render very close to edges
-      if(distToEdge > thickness * 2.0) return 0.0;
-      
-      // Create flowing position along edge
-      float flowPos = posAlongEdge + t * speed + seed + edgeId * 0.25;
-      
-      // Main lightning path using fractal noise
-      float lightning = 0.0;
-      
-      // Primary bolt - bright and sharp
-      float primaryPath = fbm(vec2(flowPos * 8.0, seed * 10.0), 3.0);
-      primaryPath = abs(primaryPath - 0.5) * 2.0; // Center and make symmetric
-      primaryPath = 1.0 - primaryPath; // Invert so center is bright
-      primaryPath = pow(primaryPath, 3.0); // Make it sharp
-      
-      // Calculate distance from edge with displacement
-      float displacement = (primaryPath - 0.5) * thickness * 0.8;
-      float distFromPath = abs(distToEdge - thickness * 0.5 - displacement);
-      
-      // Sharp falloff for electric look
-      lightning = exp(-distFromPath * 50.0 / thickness) * primaryPath;
-      
-      // Add branching bolts
-      for(float i = 0.0; i < 3.0; i++) {
-        float branchFlow = flowPos * (10.0 + i * 3.0) + i * 100.0;
-        float branch = fbm(vec2(branchFlow, seed * 20.0 + i), 2.0);
-        branch = 1.0 - abs(branch - 0.5) * 2.0;
-        branch = pow(branch, 4.0);
-        
-        // Random branching
-        float branchChance = hash(vec2(floor(branchFlow * 5.0), seed + i));
-        if(branchChance > 0.7) {
-          float branchDist = abs(distToEdge - thickness * (0.3 + i * 0.2));
-          float branchGlow = exp(-branchDist * 40.0 / thickness) * branch * 0.5;
-          lightning = max(lightning, branchGlow);
-        }
-      }
-      
-      return lightning;
+      return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
     }
     
     void main() {
       vec2 uv = vUv;
-      float t = time;
+      float t = time * speed;
       
+      // Calculate distance to each edge
+      float distToLeft = uv.x;
+      float distToRight = 1.0 - uv.x;
+      float distToBottom = uv.y;
+      float distToTop = 1.0 - uv.y;
+      
+      // Find minimum distance to any edge
+      float minDist = min(min(distToLeft, distToRight), min(distToBottom, distToTop));
+      
+      // Create the border region - make it wider
+      float borderMask = 1.0 - smoothstep(0.0, thickness * 5.0, minDist);
+      
+      if(borderMask < 0.001) {
+        gl_FragColor = vec4(0.0);
+        return;
+      }
+      
+      // Determine which edge we're on and get position along that edge
+      float edgePos = 0.0;
+      float edgeId = 0.0;
+      
+      if(minDist == distToBottom) {
+        edgePos = uv.x;
+        edgeId = 0.0;
+      } else if(minDist == distToRight) {
+        edgePos = uv.y;  
+        edgeId = 1.0;
+      } else if(minDist == distToTop) {
+        edgePos = 1.0 - uv.x;
+        edgeId = 2.0;
+      } else {
+        edgePos = 1.0 - uv.y;
+        edgeId = 3.0;
+      }
+      
+      // Create animated lightning effect
+      float lightning = 0.0;
+      
+      // Multiple waves for complex pattern
+      for(float i = 0.0; i < 5.0; i++) {
+        float freq = 10.0 + i * 7.0;
+        float amp = 1.0 / (i + 1.0);
+        float phase = t * (1.0 + i * 0.3) + edgeId * 1.57 + i * 2.0;
+        
+        // Main wave
+        float wave = sin(edgePos * freq + phase) * amp;
+        
+        // Add noise for organic feel
+        float noiseVal = noise2d(vec2(edgePos * 20.0 + t * 2.0, i + edgeId)) * noise;
+        wave += noiseVal * amp * 0.5;
+        
+        // Create sharp peaks for lightning look
+        wave = abs(wave);
+        wave = pow(wave, 0.5);
+        
+        // Distance field for glow
+        float dist = abs(minDist / thickness - 0.5 - wave * 0.3);
+        float glow = exp(-dist * dist * 10.0);
+        
+        lightning += glow * amp;
+      }
+      
+      // Add bright flashes
+      float flash = random(vec2(floor(t * 10.0), edgeId));
+      if(flash > 0.9) {
+        lightning *= 2.0;
+      }
+      
+      // Create color
       vec3 finalColor = vec3(0.0);
-      float totalGlow = 0.0;
       
-      // Layer multiple lightning bolts
-      for(float i = 0.0; i < 4.0; i++) {
-        float seed = i * 137.5; // Use golden angle for good distribution
-        float bolt = createLightning(uv, t + i * 0.1, seed);
-        
-        if(bolt > 0.01) {
-          // Core: bright white
-          vec3 coreColor = vec3(1.0, 1.0, 1.0);
-          float core = pow(bolt, 0.5) * 2.0;
-          
-          // Glow: colored
-          vec3 glowColor = color;
-          float glow = bolt;
-          
-          // Mix core and glow
-          vec3 boltColor = mix(glowColor, coreColor, core * 0.7);
-          
-          finalColor += boltColor * bolt * intensity * (1.0 - i * 0.1);
-          totalGlow = max(totalGlow, bolt);
+      // White hot core - make it much brighter
+      vec3 coreColor = vec3(1.0, 1.0, 1.0);
+      float core = pow(lightning, 0.3);
+      finalColor += coreColor * core * intensity * 3.0;
+      
+      // Colored glow - more intense
+      float glow = lightning * 1.5;
+      finalColor += color * glow * intensity * 1.5;
+      
+      // Outer halo - stronger
+      float halo = pow(borderMask, 1.5);
+      finalColor += color * halo * 0.5 * intensity;
+      
+      // Apply border mask
+      finalColor *= borderMask;
+      
+      // Hover boost
+      if(hoverStrength > 0.0) {
+        vec2 hDist = abs(uv - hoverPos);
+        float hoverDist = length(hDist);
+        if(hoverDist < 0.3) {
+          float hoverGlow = (1.0 - hoverDist / 0.3) * hoverStrength;
+          finalColor += color * hoverGlow * intensity;
         }
       }
       
-      // Add hover effect
-      if(hoverStrength > 0.01) {
-        vec4 edgeInfo = getEdgeInfo(uv);
-        vec4 hoverEdgeInfo = getEdgeInfo(hoverPos);
-        
-        if(abs(edgeInfo.y - hoverEdgeInfo.y) < 0.5 || 
-           (edgeInfo.y == 0.0 && hoverEdgeInfo.y == 3.0) ||
-           (edgeInfo.y == 3.0 && hoverEdgeInfo.y == 0.0)) {
-          
-          float posDiff = abs(edgeInfo.z - hoverEdgeInfo.z);
-          if(posDiff < 0.3) {
-            float hoverGlow = (1.0 - posDiff / 0.3) * hoverStrength;
-            float hoverBolt = createLightning(uv, t * 1.5, 999.0) * 2.0;
-            finalColor += color * hoverBolt * hoverGlow * intensity;
-            totalGlow = max(totalGlow, hoverBolt * hoverGlow);
-          }
-        }
-      }
-      
-      // Add outer glow for atmosphere
-      vec4 edgeInfo = getEdgeInfo(uv);
-      if(edgeInfo.x < thickness * 4.0) {
-        float glowFalloff = 1.0 - (edgeInfo.x / (thickness * 4.0));
-        glowFalloff = pow(glowFalloff, 2.0);
-        finalColor += color * glowFalloff * 0.2 * intensity * totalGlow;
-      }
-      
-      // Flicker effect
-      float flicker = 0.9 + sin(t * 37.0 + hash(uv) * 10.0) * 0.1;
-      finalColor *= flicker;
-      
-      // Output
-      float alpha = clamp(totalGlow * 2.0, 0.0, 1.0);
-      gl_FragColor = vec4(finalColor, alpha);
+      // Ensure visibility with higher alpha
+      float alpha = clamp(borderMask * (lightning * 2.0 + 0.5), 0.0, 1.0);
+      gl_FragColor = vec4(finalColor * 2.0, alpha);  // Boost final color as well
     }
   `;
 
@@ -348,12 +308,12 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
   // Adjusted parameters for new shader
   const glowStyle: CSSProperties = {
     position: 'absolute',
-    inset: -20,  // Reduced for tighter glow
+    inset: -30,
     borderRadius: style?.borderRadius || 'inherit',
-    background: `radial-gradient(circle at center, ${color}22 0%, transparent 50%)`,  // Subtler glow
-    filter: 'blur(20px)',
+    background: `radial-gradient(circle at center, ${color}88 0%, ${color}44 20%, ${color}22 40%, transparent 70%)`,  // Much stronger glow
+    filter: 'blur(30px)',
     pointerEvents: 'none',
-    opacity: disabled ? 0 : intensity * 0.5,
+    opacity: disabled ? 0 : 1,
     zIndex: 0,
   };
 
