@@ -53,135 +53,134 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
     
     varying vec2 vUv;
     
-    // Simple random
+    // DIAGNOSTIC MODE - Set to different values to test components
+    #define DEBUG_MODE 0  // 0=full effect, 1=border mask, 2=lightning, 3=UV, 4=simple test
+    
     float random(vec2 st) {
       return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-    }
-    
-    // Simple noise
-    float noise2d(vec2 st) {
-      vec2 i = floor(st);
-      vec2 f = fract(st);
-      
-      float a = random(i);
-      float b = random(i + vec2(1.0, 0.0));
-      float c = random(i + vec2(0.0, 1.0));
-      float d = random(i + vec2(1.0, 1.0));
-      
-      vec2 u = f * f * (3.0 - 2.0 * f);
-      
-      return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
     }
     
     void main() {
       vec2 uv = vUv;
       float t = time * speed;
       
-      // Calculate distance to each edge
-      float distToLeft = uv.x;
-      float distToRight = 1.0 - uv.x;
-      float distToBottom = uv.y;
-      float distToTop = 1.0 - uv.y;
+      // Calculate distance to edges
+      float distToEdges = min(
+        min(uv.x, 1.0 - uv.x),
+        min(uv.y, 1.0 - uv.y)
+      );
       
-      // Find minimum distance to any edge
-      float minDist = min(min(distToLeft, distToRight), min(distToBottom, distToTop));
+      // Create border mask
+      float borderMask = smoothstep(thickness, 0.0, distToEdges);
       
-      // Create the border region - make it wider
-      float borderMask = 1.0 - smoothstep(0.0, thickness * 5.0, minDist);
-      
-      if(borderMask < 0.001) {
-        gl_FragColor = vec4(0.0);
+      // DIAGNOSTIC: Simple animated test pattern
+      if(DEBUG_MODE == 4) {
+        float testPattern = sin(uv.x * 10.0 + time) * sin(uv.y * 10.0 - time);
+        vec3 testColor = vec3(testPattern, 0.5, 1.0 - testPattern);
+        gl_FragColor = vec4(testColor, 1.0);
         return;
       }
       
-      // Determine which edge we're on and get position along that edge
-      float edgePos = 0.0;
-      float edgeId = 0.0;
-      
-      if(minDist == distToBottom) {
-        edgePos = uv.x;
-        edgeId = 0.0;
-      } else if(minDist == distToRight) {
-        edgePos = uv.y;  
-        edgeId = 1.0;
-      } else if(minDist == distToTop) {
-        edgePos = 1.0 - uv.x;
-        edgeId = 2.0;
-      } else {
-        edgePos = 1.0 - uv.y;
-        edgeId = 3.0;
+      // DIAGNOSTIC: Show UV coordinates
+      if(DEBUG_MODE == 3) {
+        gl_FragColor = vec4(uv.x, uv.y, 0.0, 1.0);
+        return;
       }
       
-      // Create animated lightning effect
+      // DIAGNOSTIC: Show border mask only
+      if(DEBUG_MODE == 1) {
+        gl_FragColor = vec4(vec3(borderMask), borderMask);
+        return;
+      }
+      
+      // Create lightning effect with clear, visible bolts
       float lightning = 0.0;
       
-      // Multiple waves for complex pattern
+      // Traveling waves along the border
+      float borderPosition = 0.0;
+      
+      // Determine position along border perimeter
+      if(distToEdges == uv.x) {
+        // Left edge
+        borderPosition = uv.y;
+      } else if(distToEdges == 1.0 - uv.x) {
+        // Right edge
+        borderPosition = 2.0 + uv.y;
+      } else if(distToEdges == uv.y) {
+        // Bottom edge
+        borderPosition = 1.0 + uv.x;
+      } else {
+        // Top edge
+        borderPosition = 3.0 + (1.0 - uv.x);
+      }
+      
+      // Create sharp, visible lightning bolts
       for(float i = 0.0; i < 5.0; i++) {
-        float freq = 10.0 + i * 7.0;
-        float amp = 1.0 / (i + 1.0);
-        float phase = t * (1.0 + i * 0.3) + edgeId * 1.57 + i * 2.0;
+        // Create moving bright spots along the border
+        float boltPos = fract(borderPosition * 0.25 + t * 0.5 + i * 0.2);
         
-        // Main wave
-        float wave = sin(edgePos * freq + phase) * amp;
+        // Create sharp peaks at specific positions
+        float bolt = 1.0 - abs(boltPos - 0.5) * 2.0;
+        bolt = smoothstep(0.8, 0.95, bolt); // Very sharp cutoff
         
-        // Add noise for organic feel
-        float noiseVal = noise2d(vec2(edgePos * 20.0 + t * 2.0, i + edgeId)) * noise;
-        wave += noiseVal * amp * 0.5;
+        // Add secondary bolts
+        float boltPos2 = fract(borderPosition * 0.5 - t * 0.3 + i * 0.3);
+        float bolt2 = 1.0 - abs(boltPos2 - 0.5) * 2.0;
+        bolt2 = smoothstep(0.85, 0.98, bolt2);
         
-        // Create sharp peaks for lightning look
-        wave = abs(wave);
-        wave = pow(wave, 0.5);
-        
-        // Distance field for glow
-        float dist = abs(minDist / thickness - 0.5 - wave * 0.3);
-        float glow = exp(-dist * dist * 10.0);
-        
-        lightning += glow * amp;
+        lightning = max(lightning, max(bolt, bolt2));
       }
       
-      // Add bright flashes
-      float flash = random(vec2(floor(t * 10.0), edgeId));
-      if(flash > 0.9) {
-        lightning *= 2.0;
+      // Add constant animated streaks
+      float streak = sin(borderPosition * 20.0 + t * 5.0) * 0.5 + 0.5;
+      streak = pow(streak, 4.0);
+      lightning = max(lightning, streak * 0.5);
+      
+      // Apply to border region only
+      lightning *= borderMask;
+      
+      // DIAGNOSTIC: Show lightning only
+      if(DEBUG_MODE == 2) {
+        gl_FragColor = vec4(vec3(lightning), 1.0);
+        return;
       }
       
-      // Create color
+      // Final composition
       vec3 finalColor = vec3(0.0);
       
-      // White hot core - make it much brighter
-      vec3 coreColor = vec3(1.0, 1.0, 1.0);
-      float core = pow(lightning, 0.3);
-      finalColor += coreColor * core * intensity * 3.0;
+      // Base glow
+      vec3 glowColor = color * borderMask * 0.3;
+      finalColor += glowColor;
       
-      // Colored glow - more intense
-      float glow = lightning * 1.5;
-      finalColor += color * glow * intensity * 1.5;
+      // Lightning bolts - make them VERY bright
+      vec3 boltColor = mix(color, vec3(1.0), 0.7); // Mostly white
+      finalColor += boltColor * lightning * intensity * 3.0;
       
-      // Outer halo - stronger
-      float halo = pow(borderMask, 1.5);
-      finalColor += color * halo * 0.5 * intensity;
-      
-      // Apply border mask
-      finalColor *= borderMask;
-      
-      // Hover boost
-      if(hoverStrength > 0.0) {
-        vec2 hDist = abs(uv - hoverPos);
-        float hoverDist = length(hDist);
-        if(hoverDist < 0.3) {
-          float hoverGlow = (1.0 - hoverDist / 0.3) * hoverStrength;
-          finalColor += color * hoverGlow * intensity;
-        }
+      // Extra bright core
+      if(lightning > 0.1) {
+        finalColor += vec3(1.0) * pow(lightning, 0.5) * intensity;
       }
       
-      // Ensure visibility with higher alpha
-      float alpha = clamp(borderMask * (lightning * 2.0 + 0.5), 0.0, 1.0);
-      gl_FragColor = vec4(finalColor * 2.0, alpha);  // Boost final color as well
+      // Add some constant brightness to ensure visibility
+      if(borderMask > 0.1) {
+        finalColor += color * 0.1 * intensity;
+      }
+      
+      float alpha = clamp(borderMask + lightning * 2.0, 0.0, 1.0);
+      
+      // Output with debugging info
+      #if DEBUG_MODE == 0
+        gl_FragColor = vec4(finalColor * 2.0, alpha);
+      #else
+        // This shouldn't be reached but just in case
+        gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0); // Magenta = error
+      #endif
     }
   `;
 
   const hoverAmt = useRef(0);
 
+  // Add debugging hooks
   useFrame((state) => {
     if (materialRef.current) {
       // Animate time
@@ -196,12 +195,22 @@ const ElectricMesh: React.FC<ElectricMeshProps> = ({ color, speed, intensity, th
       u.hoverStrength.value = hoverAmt.current;
       u.hoverPos.value.set(hoverPos.x, hoverPos.y);
 
-      // Update base uniforms - no need to boost on hover as it's handled in shader
+      // Update base uniforms
       u.intensity.value = intensity;
       u.thickness.value = thickness;
       u.speed.value = speed;
       u.noise.value = noise;
       u.color.value = new THREE.Color(color);
+      
+      // DIAGNOSTIC: Log every second to verify updates
+      if (Math.floor(state.clock.getElapsedTime()) !== Math.floor(state.clock.getElapsedTime() - 0.016)) {
+        console.log('ElectricBorder uniforms:', {
+          time: u.time.value,
+          intensity: u.intensity.value,
+          thickness: u.thickness.value,
+          color: u.color.value.getHexString()
+        });
+      }
     }
   });
 
@@ -345,8 +354,13 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
           camera={{ position: [0, 0, 1], fov: 75 }}
           gl={{ 
             alpha: true, 
-            antialias: true,
-            powerPreference: "high-performance"
+            antialias: false,  // Disable antialiasing for better performance
+            powerPreference: "high-performance",
+            preserveDrawingBuffer: true  // Ensure buffer is preserved
+          }}
+          dpr={[1, 2]}  // Set device pixel ratio
+          onCreated={(state) => {
+            console.log('Canvas created, WebGL context:', state.gl);
           }}
         >
           <ElectricMesh
