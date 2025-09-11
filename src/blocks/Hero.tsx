@@ -60,7 +60,7 @@ export default function HeroBlock() {
 
       <img
         ref={revealImgRef}
-        src="/path/to/image.jpg"
+        src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
         alt="Reveal effect"
         style={{
           position: 'absolute',
