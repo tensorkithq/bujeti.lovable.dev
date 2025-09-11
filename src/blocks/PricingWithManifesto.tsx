@@ -182,7 +182,7 @@ const PricingWithManifesto = () => {
             </div>
           </div>
         </div>
-        <div className="text-white overflow-hidden text-left text-xl font-libre-baskerville leading-relaxed max-w-4xl  mx-auto px-4 py-24">
+        <div className="text-white overflow-hidden text-left text-xl leading-relaxed max-w-4xl  mx-auto px-4 py-24">
           <p>
             Our Custom Plan is tailored to meet your unique needs and
             requirements. Get specific features, extra storage, or enhanced
