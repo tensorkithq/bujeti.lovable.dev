@@ -3,9 +3,9 @@ import PricingCard from '@/components/PricingCard';
 
 const ManifestoText = () => {
   return (
-    <div className="relative overflow-hidden pb-[450px] pt-[212px] lg:pb-[400px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
+    <div className="relative overflow-hidden font-libre-baskerville pb-[450px] pt-[212px] lg:pb-[400px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="text-3xl font-medium leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
+        <div className="text-3xl font-light leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
           <p>
             The Bujeti team prioritizes open software, ensuring Bujeti remains free. To sustain cloud operations and further development, cloud users will be charged for consumed cloud resources. These resources currently fall into three categories: storage, network and compute.
           </p>
@@ -98,9 +98,9 @@ const PricingWithManifesto = () => {
                 <h2 className="sr-only">Bujeti pricing plans</h2>
                 <div className="relative xs:px-5">
                     <div className="no-scrollbars -mx-[calc((100vw-100%)/2)] flex snap-x snap-mandatory overflow-x-auto px-[calc((100vw-100%)/2)] py-[320px] xs:px-[calc((100vw-122%)/2)]">
-                        <div className="flex w-max flex-shrink-0">
+                        {/* <div className="flex w-max flex-shrink-0">
                             {pricingPlans.map(plan => <PricingCard key={plan.name} plan={plan} />)}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
