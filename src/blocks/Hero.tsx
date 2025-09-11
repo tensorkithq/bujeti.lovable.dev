@@ -194,18 +194,24 @@ export default function HeroBlock() {
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
         Bujeti is Africa’s most loved spend management platform that tracks expenses, reimbursements, and invoices for financial efficiency on the go.
         </p>
-        <Button 
-          className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-2xl transition-all duration-200 border-2 border-transparent bg-gradient-to-r from-white via-white to-white hover:from-green-50 hover:via-white hover:to-green-50 ring-2 ring-green-400/20 hover:ring-green-400/40 shadow-lg hover:shadow-green-400/10"
-          style={{
-            background: 'linear-gradient(135deg, rgba(34, 197, 93, 0.1) 0%, white 15%, white 85%, rgba(34, 197, 93, 0.1) 100%)',
-            borderImage: 'linear-gradient(135deg, rgba(34, 197, 93, 0.3), transparent, rgba(34, 197, 93, 0.3)) 1',
-          }}
+        <div 
+         className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200"
+         style={{
+           background: 'linear-gradient(135deg, rgba(159, 255, 89, 0.3), transparent, rgba(159, 255, 89, 0.3))',
+         }}
         >
-          SEE IN ACTION →
-        </Button>
+         <Button 
+           className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-[14px] transition-all duration-200"
+           style={{
+             background: 'linear-gradient(135deg, rgba(159, 255, 89, 0.1) 0%, white 15%, white 85%, rgba(159, 255, 89, 0.1) 100%)',
+           }}
+         >
+           SEE IN ACTION <span className="mb-0.5">→</span>
+         </Button>
+       </div>
       </section>
-
-      <div
+ 
+       <div
         className="min-h-max-content"
         style={{
           position: "absolute",
