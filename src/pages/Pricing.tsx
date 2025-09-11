@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Footer from "@/blocks/Footer";
 
 const Pricing = () => {
   return (
@@ -12,6 +13,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
