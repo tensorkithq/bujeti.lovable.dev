@@ -30,12 +30,12 @@ const Header = () => {
             >
               Pricing
             </Link>
-            <a
-              href="https://bujeti.com/resources"
+            <Link
+              to="/experimental"
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
-              Resources
-            </a>
+              Experimental
+            </Link>
           </nav>
         </div>
 
