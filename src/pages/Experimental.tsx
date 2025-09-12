@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from 'react';
-import ElectricBorderThree from '@/components/ElectricBorderThree';
+import ElectricBorderThree from '@/components/FumyBorder';
 import LaserBorder from '@/components/WispyBorder';
-import LaserBorderShimmer from '@/components/ElectricBorderThree';
+import LaserBorderShimmer from '@/components/FumyBorder';
 
 interface IPricingPlan {
   name: string;
