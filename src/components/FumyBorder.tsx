@@ -183,7 +183,7 @@ const fragmentShader = `
   }
 `;
 
-type ElectricBorderThreeProps = PropsWithChildren<{
+type FumyBorderProps = PropsWithChildren<{
   color?: string;
   speed?: number;
   intensity?: number;
@@ -195,12 +195,12 @@ type ElectricBorderThreeProps = PropsWithChildren<{
 }>;
 
 /**
- * ElectricBorderThree - Realistic electric border using raw Three.js
+ * FumyBorder - Realistic electric border using raw Three.js
  * 
  * Creates a true electric/lightning border effect with dynamic plasma-like
  * animations using WebGL shaders for maximum realism and performance.
  */
-const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
+const FumyBorder: React.FC<FumyBorderProps> = ({
   children,
   color = '#7df9ff',
   speed = 1,
@@ -573,4 +573,4 @@ const ElectricBorderThree: React.FC<ElectricBorderThreeProps> = ({
   );
 };
 
-export default ElectricBorderThree;
+export default FumyBorder;

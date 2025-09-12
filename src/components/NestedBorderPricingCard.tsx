@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import ElectricBorderThree from './ElectricBorderThree';
+import FumyBorder from './FumyBorder';
 import WispyBorder from './WispyBorder';
 import PricingCard from './PricingCard';
 
@@ -56,11 +56,11 @@ const NestedBorderPricingCard: React.FC<NestedBorderPricingCardProps> = ({ plan,
   const innerCardStyle = { borderRadius: 16 };
 
   return (
-    <ElectricBorderThree {...outerProps}>
+    <FumyBorder {...outerProps}>
       <WispyBorder {...innerProps}>
         <PricingCard plan={plan} style={innerCardStyle} />
       </WispyBorder>
-    </ElectricBorderThree>
+    </FumyBorder>
   );
 };
 

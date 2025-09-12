@@ -35,7 +35,7 @@ const fragmentShader = `
   #define W_BASE_X 1.5
   #define W_LAYER_GAP 0.25
   
-  // --- Hash function (from ElectricBorderThree) ---
+  // --- Hash function (from FumyBorder) ---
   float hash21(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
     p += dot(p, p + 34.123);
@@ -49,7 +49,7 @@ const fragmentShader = `
     return max(0.0, a * b);
   }
   
-  // --- Border logic (from ElectricBorderThree) ---
+  // --- Border logic (from FumyBorder) ---
   float edgeDistance(vec2 uv) {
     return min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
   }
