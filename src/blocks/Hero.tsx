@@ -293,7 +293,7 @@ export default function HeroBlock() {
             style={{
               position: "absolute",
               width: "100%",
-              top: "30%",
+              top: "10%",
               //@ts-ignore
               "--mx": "-9999px",
               //@ts-ignore
