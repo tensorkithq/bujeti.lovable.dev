@@ -2,6 +2,8 @@
 // Component inspired by @BalintFerenczy on X
 // https://codepen.io/BalintFerenczy/pen/KwdoyEN
 // SUB CREDIT: https://reactbits.dev/animations/electric-border
+// NOT USING THIS IN THE PROJECT, BECAUSE IT LAGS A LOT
+// IT'S A GOOD EXAMPLE OF HOW TO ACHIEVE THIS EFFECT WITH SVG FILTERS
 
 import React, { CSSProperties, PropsWithChildren, useEffect, useId, useLayoutEffect, useRef } from 'react';
 

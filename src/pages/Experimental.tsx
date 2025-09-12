@@ -216,11 +216,11 @@ const Experimental: React.FC = () => {
           </FumyBorder>
         </div>
 
-        {/* FumyBorder Pricing Card - Magenta */}
+        {/* WispyBorder Pricing Card - Magenta */}
         <div>
-          <FumyBorder {...getBorderProps('#ff6b9d', 'laser')}>
+          <WispyBorder {...getBorderProps('#ff6b9d', 'laser')}>
             <PortraitCard plan={pricingPlans.professional} />
-          </FumyBorder>
+          </WispyBorder>
         </div>
 
         {/* Nested Composition: WispyBorder inside FumyBorder - Purple/Gold */}
