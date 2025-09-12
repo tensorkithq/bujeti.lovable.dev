@@ -1,7 +1,6 @@
 import React, { CSSProperties, useState } from 'react';
-import ElectricBorderThree from '@/components/FumyBorder';
-import LaserBorder from '@/components/WispyBorder';
-import LaserBorderShimmer from '@/components/FumyBorder';
+import FumyBorder from '@/components/FumyBorder';
+import WispyBorder from '@/components/WispyBorder';
 
 interface IPricingPlan {
   name: string;
@@ -210,27 +209,27 @@ const Experimental: React.FC = () => {
         maxWidth: '1400px',
         margin: '0 auto'
       }}>
-        {/* ElectricBorderThree Pricing Card - Cyan */}
+        {/* FumyBorder Pricing Card - Cyan */}
         <div>
-          <ElectricBorderThree {...getBorderProps('#00d4ff', 'electric')}>
+          <FumyBorder {...getBorderProps('#00d4ff', 'electric')}>
             <PortraitCard plan={pricingPlans.starter} />
-          </ElectricBorderThree>
+          </FumyBorder>
         </div>
 
-        {/* LaserBorderShimmer Pricing Card - Magenta */}
+        {/* FumyBorder Pricing Card - Magenta */}
         <div>
-          <LaserBorderShimmer {...getBorderProps('#ff6b9d', 'laser')}>
+          <FumyBorder {...getBorderProps('#ff6b9d', 'laser')}>
             <PortraitCard plan={pricingPlans.professional} />
-          </LaserBorderShimmer>
+          </FumyBorder>
         </div>
 
-        {/* Nested Composition: LaserBorder inside ElectricBorderThree - Purple/Gold */}
+        {/* Nested Composition: WispyBorder inside FumyBorder - Purple/Gold */}
         <div>
-          <ElectricBorderThree {...getBorderProps('#fbbf24', 'electric')}>
-            <LaserBorder {...{ ...getBorderProps('#fbbf24', 'laser'), style: { borderRadius: "20px" } }}>
+          <FumyBorder {...getBorderProps('#fbbf24', 'electric')}>
+            <WispyBorder {...{ ...getBorderProps('#fbbf24', 'laser'), style: { borderRadius: "20px" } }}>
               <PortraitCard plan={pricingPlans.enterprise} style={{ borderRadius: 16 }} />
-            </LaserBorder>
-          </ElectricBorderThree>
+            </WispyBorder>
+          </FumyBorder>
         </div>
       </div>
 
@@ -238,7 +237,7 @@ const Experimental: React.FC = () => {
         <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem' }}>Pricing Tiers with Dynamic Border Effects:</h2>
         
         <div style={{ lineHeight: '1.8' }}>
-          <h3 style={{ color: '#00d4ff', marginTop: '2rem' }}>Starter Plan - ElectricBorderThree (Cyan)</h3>
+          <h3 style={{ color: '#00d4ff', marginTop: '2rem' }}>Starter Plan - FumyBorder (Cyan)</h3>
           <ul style={{ paddingLeft: '1.5rem' }}>
             <li><strong>Border Effect:</strong> Interactive electric border with hover-following lightning</li>
             <li><strong>Color Scheme:</strong> Bright cyan (#00d4ff) for a modern, accessible feel</li>
@@ -248,7 +247,7 @@ const Experimental: React.FC = () => {
         </div>
         
         <div style={{ lineHeight: '1.8' }}>
-          <h3 style={{ color: '#ff6b9d', marginTop: '2rem' }}>Professional Plan - LaserBorderShimmer (Magenta)</h3>
+          <h3 style={{ color: '#ff6b9d', marginTop: '2rem' }}>Professional Plan - FumyBorder (Magenta)</h3>
           <ul style={{ paddingLeft: '1.5rem' }}>
             <li><strong>Border Effect:</strong> Continuous flowing laser with particle wisps and a shimmering overlay</li>
             <li><strong>Color Scheme:</strong> Vibrant magenta (#ff6b9d) for professional appeal</li>
