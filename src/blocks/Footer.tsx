@@ -60,7 +60,7 @@ const linkSections = [
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-800 border-t border-gray-200 overflow-hidden pt-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             <div className="col-span-2 lg:col-span-2">

@@ -10,7 +10,9 @@ const Index = () => {
         <Header />
         <Hero />
       </header>
+      <main className="bg-white">
       <Features />
+      </main>
       <section className="bg-white text-black py-16" />
       <Footer />
     </main>

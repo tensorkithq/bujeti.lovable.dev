@@ -47,11 +47,11 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <section className="py-20 sm:py-16 bg-white text-black">
-      <div className="container pt-12 mx-auto px-4">
+    <section className="container max-w-8xl py-20 sm:py-16 bg-white text-black">
+      <div className="container mx-auto px-4">
         <div className="text-left py-6 mb-12 max-w-2xl">
           <p className="text-lg text-gray-700 uppercase">Products</p>
-          <h2 className="text-6xl font-libre-baskerville mt-2 leading-tight tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-libre-baskerville mt-2 leading-tight tracking-tight">
             One platform,{" "}
             <em className="text-green-800 italic">more control</em> and complete
             visibility
@@ -64,7 +64,7 @@ const Features = () => {
               href={feature.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-xl shadow-[inset_0px_-0.5px_0px_0px_rgba(0,0,0,0.12),0px_1px_2px_-0.5px_rgba(0,0,0,0.06),0px_0px_0px_0.5px_rgba(48,48,48,0.16)] overflow-hidden bg-gray-50"
+              className="group ring-1 ring-gray-100/50 block rounded-xl shadow-[inset_0px_-0.5px_0px_0px_rgba(0,0,0,0.12),0px_1px_2px_-0.5px_rgba(0,0,0,0.06),0px_0px_0px_0.5px_rgba(48,48,48,0.16)] overflow-hidden bg-gray-50"
               style={{
                 backgroundColor: "rgb(243, 243, 243)",
               }}
