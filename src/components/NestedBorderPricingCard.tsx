@@ -33,7 +33,7 @@ const getBorderProps = (color: string, borderType: 'electric' | 'laser', disable
 
   const baseLaserProps = {
     speed: 0.5,
-    thickness: 0.012,
+    thickness: 0.02,
     intensity: 1.5,
     style: { borderRadius: "24px" },
     disabled,
@@ -53,7 +53,10 @@ const NestedBorderPricingCard: React.FC<NestedBorderPricingCardProps> = ({ plan,
   
   // Adjust inner border radius to create a nested effect
   innerProps.style.borderRadius = "20px";
-  const innerCardStyle = { borderRadius: 16 };
+  const innerCardStyle = { 
+    borderRadius: 16, 
+    boxShadow: `0 0 80px 20px ${innerColor}40, 0 0 120px 40px ${innerColor}20, 0 0 160px 60px ${innerColor}10` 
+  };
 
   return (
       <WispyBorder {...innerProps}>

@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/blocks/Footer';
 import WispyBorder from '@/components/WispyBorder';
 import ElectricBorder from '@/components/ElectricBorder';
+import FractalElectricBorder from '@/components/FractalElectricBorder';
 
 const ManifestoText = () => {
   return (
@@ -67,85 +68,102 @@ const PortraitCard: React.FC<CardProps> = ({
     flexDirection: 'column',
     gap: '1.5rem',
     backdropFilter: 'blur(10px)',
-    borderRadius: 24
+    borderRadius: 24,
+    position: 'relative' as const,
+    overflow: 'hidden'
   };
+
+  const dotPatternStyle: CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.05) 0.2px, transparent 0.8px)`,
+    backgroundSize: '4px 4px',
+    backgroundPosition: '0 0, 5px 5px',
+    maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%)',
+    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%)',
+    pointerEvents: 'none' as const
+  };
+
   return <div style={cardStyle}>
-    <div>
-      <h3 style={{
-        fontSize: '1.2rem',
-        fontWeight: '400',
-        opacity: 0.9,
+    <div style={dotPatternStyle} />
+    <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
+      <div>
+        <h3 style={{
+          fontSize: '1.2rem',
+          fontWeight: '400',
+          opacity: 0.9,
+          margin: 0
+        }}>
+          {plan.name}
+        </h3>
+      </div>
+
+      <div>
+        <div style={{
+          fontSize: '3rem',
+          fontWeight: '700',
+          lineHeight: 1
+        }}>
+          {plan.price}
+          {plan.priceDetails && <span style={{
+            fontSize: '1.2rem',
+            fontWeight: '400',
+            opacity: 0.7
+          }}>
+            {plan.priceDetails}
+          </span>}
+          <span style={{
+            fontSize: '1.2rem',
+            fontWeight: '400',
+            opacity: 0.7
+          }}>
+            /monthly
+          </span>
+        </div>
+      </div>
+
+      <p style={{
+        fontSize: '1rem',
+        opacity: 0.8,
+        lineHeight: 1.5,
         margin: 0
       }}>
-        {plan.name}
-      </h3>
-    </div>
+        {plan.description}
+      </p>
 
-    <div>
       <div style={{
-        fontSize: '3rem',
-        fontWeight: '700',
-        lineHeight: 1
-      }}>
-        {plan.price}
-        {plan.priceDetails && <span style={{
-          fontSize: '1.2rem',
-          fontWeight: '400',
-          opacity: 0.7
-        }}>
-          {plan.priceDetails}
-        </span>}
-        <span style={{
-          fontSize: '1.2rem',
-          fontWeight: '400',
-          opacity: 0.7
-        }}>
-          /monthly
-        </span>
-      </div>
-    </div>
-
-    <p style={{
-      fontSize: '1rem',
-      opacity: 0.8,
-      lineHeight: 1.5,
-      margin: 0
-    }}>
-      {plan.description}
-    </p>
-
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem',
-      marginTop: 'auto'
-    }}>
-      {plan.features.map((feature, index) => <div key={index} style={{
         display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem'
+        flexDirection: 'column',
+        gap: '0.75rem',
+        marginTop: 'auto'
       }}>
-        <span style={{
-          color: '#44ff88'
-        }}></span> {feature}
-      </div>)}
-    </div>
+        {plan.features.map((feature, index) => <div key={index} style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}>
+          <span style={{
+            color: '#44ff88'
+          }}></span> {feature}
+        </div>)}
+      </div>
 
-    <button style={{
-      width: '100%',
-      padding: '1rem',
-      marginTop: '1.5rem',
-      background: plan.featured ? 'white' : 'transparent',
-      color: plan.featured ? 'black' : 'white',
-      border: plan.featured ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: '12px',
-      fontSize: '1.1rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease'
-    }}>
-      {plan.buttonText}
-    </button>
+      <button style={{
+        width: '100%',
+        padding: '1rem',
+        marginTop: '1.5rem',
+        background: plan.featured ? 'white' : 'transparent',
+        color: plan.featured ? 'black' : 'white',
+        border: plan.featured ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
+        borderRadius: '12px',
+        fontSize: '1.1rem',
+        fontWeight: '600',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease'
+      }}>
+        {plan.buttonText}
+      </button>
+    </div>
   </div>;
 };
 
@@ -207,8 +225,8 @@ const PricingExperimental: React.FC = () => {
     };
     const baseLaserProps = {
       speed: 0.5,
-      thickness: 0.012,
-      intensity: 1.5,
+      thickness: 0.01,
+      intensity: 1.25,
       style: {
         borderRadius: "24px"
       },
@@ -237,7 +255,7 @@ const PricingExperimental: React.FC = () => {
         {pricingPlans.map((plan) => {
           const colors = borderColors[plan.name as keyof typeof borderColors];
           const isSelected = selectedPlan === plan.name;
-          
+
           return (
             <div
               key={plan.name}
@@ -251,25 +269,35 @@ const PricingExperimental: React.FC = () => {
               }}
             >
               {isSelected ? (
-                      <ElectricBorder
-                      color={colors.outerColor}
-                      speed={1}
-                      chaos={0.9}
-                      thickness={3}
-                      style={{ borderRadius: 24 }}
-                    >
-                <ElectricBorder
+                <FractalElectricBorder
                   color={colors.outerColor}
                   speed={1}
                   chaos={0.9}
                   thickness={3}
-                  style={{ borderRadius: 24 }}
+                  style={{ borderRadius: 20 }}
                 >
-                  <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
-                    <PortraitCard plan={plan} style={{ borderRadius: 16, margin: '4px' }} />
-                  </WispyBorder>
-                </ElectricBorder>
-                </ElectricBorder>
+                  <ElectricBorder
+                    color={colors.outerColor}
+                    speed={1}
+                    chaos={0.9}
+                    thickness={3}
+                    style={{ borderRadius: 20 }}
+                  >
+                    <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
+                      <PortraitCard plan={plan} style={{ 
+                        borderColor: colors.outerColor, 
+                        borderWidth: 2, 
+                        borderRadius: 24, 
+                        marginTop: '12px',
+                        marginLeft: '8px',
+                        marginRight: '8px',
+                        marginBottom: '12px',
+                        background: 'rgba(13, 15, 17, 0.4)',
+                        backdropFilter: 'blur(10px)',
+                        }} />
+                    </WispyBorder>
+                  </ElectricBorder>
+                </FractalElectricBorder>
               ) : (
                 <PortraitCard plan={plan} style={{ borderRadius: 24 }} />
               )}
@@ -277,7 +305,7 @@ const PricingExperimental: React.FC = () => {
           );
         })}
       </div>
- 
+
     </div>
     <Footer />
   </>;

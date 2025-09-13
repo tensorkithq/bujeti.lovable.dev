@@ -303,12 +303,12 @@ const ElectricFireBorder: React.FC<ElectricFireBorderProps> = ({
           >
             <defs>
               <filter id={filterId} colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="noise1" seed="1" />
+                <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="4" result="noise1" seed="1" />
                 <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
                   <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
                 </feOffset>
 
-                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="4" result="noise2" seed="2" />
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="noise2" seed="2" />
                 <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
                   <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
                 </feOffset>
