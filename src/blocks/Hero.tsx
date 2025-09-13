@@ -210,7 +210,7 @@ export default function HeroBlock() {
             <br />
             all in one place
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-lg md:max-w-2xl mx-auto md:mx-0">
             Bujeti is Africa's most loved spend management platform that tracks
             expenses, reimbursements, and invoices for financial efficiency on
             the go.
