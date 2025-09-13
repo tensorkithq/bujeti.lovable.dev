@@ -52,7 +52,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, style }) => {
             {plan.name}
           </h3>
         </div>
-        
+
         <div style={{ marginTop: '10px' }}>
           <div className="price-font-size" style={{ fontSize: '64px', fontWeight: 600, lineHeight: 1, letterSpacing: '-0.03em', transition: 'font-size 0.3s ease' }}>
             {plan.price}
@@ -66,7 +66,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, style }) => {
             </span>
           </div>
         </div>
-        
+
         <p style={{ fontSize: '16px', opacity: 0.9, lineHeight: 1.4, margin: 0, marginTop: '8px', letterSpacing: '-0.03em' }}>
           {plan.description}
         </p>
@@ -77,7 +77,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, style }) => {
           height: '1px',
           backgroundColor: 'rgba(255, 255, 255, 0.1)',
         }} aria-hidden="true"></span>
-        
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '20px' }}>
           {plan.features.map((feature, index) => (
             <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -85,7 +85,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, style }) => {
             </div>
           ))}
         </div>
-        
+
         <button style={{
           width: '100%',
           height: '50px', // Slightly smaller button

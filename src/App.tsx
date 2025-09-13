@@ -11,6 +11,7 @@ import Pricing from "./pages/Pricing";
 import Fire from "./pages/Fire";
 import NotFound from "./pages/NotFound";
 import Experimental from "./pages/Experimental";
+import PricingExperimental from "./pages/PricingExperimental";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/pricing" element={<PricingExperimental />} />
+          <Route path="/pricing-non-experimental" element={<Pricing />} />
           <Route path="/experimental" element={<Experimental />} />
           <Route path="/fire" element={<Fire />} />
           
