@@ -25,7 +25,7 @@ const Header = () => {
               <Link to="/">Product</Link>
             </a>
             <Link
-              to="/pricing"
+              to="/pricing-experimental"
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               Pricing
