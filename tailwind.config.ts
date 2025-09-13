@@ -276,7 +276,7 @@ export default {
   },
   plugins: [
     require("tailwindcss-animate"),
-    function({ addUtilities }) {
+    function({ addUtilities }: any) {
       addUtilities({
         '.scrollbar-hidden': {
           /* Hide scrollbar for Chrome, Safari and Opera */
