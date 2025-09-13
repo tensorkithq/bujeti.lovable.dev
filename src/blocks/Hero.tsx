@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroBottom = () => {
   return (
-    <section className="absolute bottom-0 px-[17.1rem] md:px-[15.3rem] w-full bg-transparent text-white overflow-hidden z-20">
+    <section className="absolute bottom-0 px-4 md:px-[15.3rem] w-full bg-transparent text-white overflow-hidden z-20">
       <div
         className="absolute top-0 left-0 w-full h-96 pointer-events-none"
         style={{
@@ -23,11 +23,12 @@ const HeroBottom = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto py-8">
         <div className="text-left mb-8">
-          <p className="text-gray-400 text-lg mb-4">
+          <p className="text-gray-400 text-sm md:text-lg mb-4">
             Built for businesses at every stage:
           </p>
 
-          <div className="flex flex-wrap justify-start gap-6 mt-8">
+          {/* Desktop: flex-wrap layout */}
+          <div className="hidden md:flex flex-wrap justify-start gap-6 mt-8">
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">Expense Management</span>
             </div>
@@ -54,6 +55,30 @@ const HeroBottom = () => {
               <span className="text-white font-medium">Payroll</span>
             </div>
           </div>
+
+          {/* Mobile: horizontal scrollable list */}
+          <div className="md:hidden mt-6 overflow-x-auto no-scrollbars">
+            <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Expense Management</span>
+              </div>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Payments Automation</span>
+              </div>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Corporate Cards</span>
+              </div>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Bank Connect</span>
+              </div>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Invoicing</span>
+              </div>
+              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Payroll</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -62,7 +87,7 @@ const HeroBottom = () => {
 
 const HeroMockup = () => {
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
+    <div className="relative w-full h-full flex items-center justify-center p-2 md:p-4">
       <svg
         className="absolute top-0 left-0 w-full pointer-events-none"
         style={{
@@ -107,8 +132,8 @@ const HeroMockup = () => {
           fill="url(#curveGradient2)"
         />
       </svg>
-      <div className="relative flex w-full justify-start items-start align-left overflow-hidden rounded-2xl ring-1 ring-[rgba(159,255,89,0.62)] ring-inset ring-offset-1 ring-offset-[rgba(159,255,89,0.12)]">
-        <div className="relative w-full h-full overflow-hidden rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
+      <div className="relative flex w-full justify-start items-start align-left overflow-hidden rounded-xl md:rounded-2xl ring-1 ring-[rgba(159,255,89,0.62)] ring-inset ring-offset-1 ring-offset-[rgba(159,255,89,0.12)] shadow-2xl shadow-[rgba(159,255,89,0.1)]">
+        <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
           <div className="relative w-full h-full bg-[#060010] overflow-hidden">
             <img
               src="/bujeti-mockup.png"
@@ -133,10 +158,10 @@ export default function HeroBlock() {
   return (
     <>
       <div
+        className="relative overflow-hidden"
         style={{
-          height: "133vh",
-          position: "relative",
-          overflow: "hidden",
+          height: "100vh",
+          minHeight: "600px",
         }}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -179,59 +204,38 @@ export default function HeroBlock() {
         />
 
         {/* Hero Text Section */}
-        <section
-          className="absolute max-w-7xl z-10"
-          style={{
-            top: "15%",
-            left: "22%",
-            transform: "translateX(-10%)",
-            width: "90%",
-            maxWidth: "800px",
-            textAlign: "left",
-          }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        <section className="absolute z-10 px-4 md:px-0 w-full md:max-w-7xl top-[15%] md:top-[15%] left-1/2 md:left-[22%] transform -translate-x-1/2 md:-translate-x-[10%] text-center md:text-left">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
             Your finances
             <br />
             all in one place
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
-            Bujeti is Africa’s most loved spend management platform that tracks
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
+            Bujeti is Africa's most loved spend management platform that tracks
             expenses, reimbursements, and invoices for financial efficiency on
             the go.
           </p>
           <div
-            className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200"
+            className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200 touch-manipulation"
             style={{
               background:
                 "linear-gradient(135deg, rgba(159, 255, 89, 0.3), transparent, rgba(159, 255, 89, 0.3))",
             }}
           >
             <Button
-              className="bg-white text-black hover:bg-gray-50 px-8 py-3 text-base font-medium rounded-[14px] transition-all duration-200"
+              className="bg-white text-black hover:bg-gray-50 px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-medium rounded-[14px] transition-all duration-200 min-h-[48px] touch-manipulation"
               style={{
                 background:
                   "linear-gradient(135deg, rgba(159, 255, 89, 0.1) 0%, white 15%, white 85%, rgba(159, 255, 89, 0.1) 100%)",
               }}
             >
-              SEE IN ACTION <span className="mb-0.5">→</span>
+              SEE IN ACTION <span className="mb-0.5 ml-2">→</span>
             </Button>
           </div>
         </section>
 
-        <div
-          className="min-h-max-content"
-          style={{
-            position: "absolute",
-            top: "55%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "67.11%",
-            color: "white",
-            display: "flex",
-            zIndex: 6,
-          }}
-        >
+        {/* Product Mockup Section */}
+        <div className="absolute top-[45%] md:top-[55%] left-1/2 transform -translate-x-1/2 w-[90%] md:w-[67.11%] z-6">
           <HeroMockup />
         </div>
 
