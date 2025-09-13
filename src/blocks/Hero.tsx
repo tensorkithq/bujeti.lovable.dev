@@ -204,7 +204,7 @@ export default function HeroBlock() {
         />
 
         {/* Hero Text Section */}
-        <section className="absolute z-10 px-4 md:px-0 w-full md:max-w-7xl top-[15%] md:top-[15%] left-1/2 md:left-[22%] transform -translate-x-1/2 md:-translate-x-[10%] text-center md:text-left">
+        <section className="absolute z-10 px-4 md:px-0 w-full max-w-2xl md:max-w-7xl top-[15%] md:top-[15%] left-4 md:left-[22%] transform md:-translate-x-[10%] text-left">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
             Your finances
             <br />
