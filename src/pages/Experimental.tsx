@@ -211,9 +211,9 @@ const Experimental: React.FC = () => {
       }}>
         {/* FumyBorder Pricing Card - Cyan */}
         <div>
-          <FumyBorder {...getBorderProps('#00d4ff', 'electric')}>
+          <WispyBorder {...getBorderProps('#00d4ff', 'electric')}>
             <PortraitCard plan={pricingPlans.starter} />
-          </FumyBorder>
+          </WispyBorder>
         </div>
 
         {/* WispyBorder Pricing Card - Magenta */}
