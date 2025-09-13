@@ -56,26 +56,33 @@ const HeroBottom = () => {
             </div>
           </div>
 
-          {/* Mobile: horizontal scrollable list */}
-          <div className="md:hidden mt-6 overflow-x-auto no-scrollbars">
-            <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+          {/* Mobile: horizontal marquee scroll */}
+          <div className="md:hidden mt-6 overflow-hidden">
+            <div className="flex gap-4 pb-2 animate-marquee" style={{ width: 'max-content' }}>
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Expense Management</span>
               </div>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Payments Automation</span>
               </div>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Corporate Cards</span>
               </div>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Bank Connect</span>
               </div>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Invoicing</span>
               </div>
-              <div className="flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 min-w-fit border border-white/20">
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
                 <span className="text-white font-medium text-sm whitespace-nowrap">Payroll</span>
+              </div>
+              {/* Duplicate for seamless loop */}
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Expense Management</span>
+              </div>
+              <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
+                <span className="text-white font-medium text-sm whitespace-nowrap">Payments Automation</span>
               </div>
             </div>
           </div>
