@@ -314,8 +314,8 @@ const PricingExperimental: React.FC = () => {
                 <div
                   key={plan.name}
                   onClick={() => setSelectedPlan(plan.name)}
-                  className="cursor-pointer flex-shrink-0 snap-center w-80 md:w-96"
-                  style={{ minHeight: '500px' }}
+                  className="cursor-pointer flex-shrink-0 snap-center"
+                  style={{ minHeight: '500px', minWidth: '400px', width: '400px' }}
                 >
                   {isSelected ? (
                     <FractalElectricBorder
