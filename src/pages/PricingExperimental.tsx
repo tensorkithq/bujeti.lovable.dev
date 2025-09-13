@@ -246,7 +246,6 @@ const PricingExperimental: React.FC = () => {
         {pricingPlans.map((plan) => {
           const colors = borderColors[plan.name as keyof typeof borderColors];
           const isSelected = selectedPlan === plan.name;
-          const disabled = !isSelected;
           
           return (
             <div
@@ -260,17 +259,21 @@ const PricingExperimental: React.FC = () => {
                 minHeight: "500px",
               }}
             >
-              <ElectricBorder
-                color={colors.outerColor}
-                speed={1}
-                chaos={0.5}
-                thickness={1}
-                style={{ borderRadius: 24 }}
-              >
-                <WispyBorder {...getBorderProps(colors.innerColor, 'laser', disabled)}>
-                  <PortraitCard plan={plan} style={{ borderRadius: 16 }} />
-                </WispyBorder>
-              </ElectricBorder>
+              {isSelected ? (
+                <ElectricBorder
+                  color={colors.outerColor}
+                  speed={1}
+                  chaos={0.5}
+                  thickness={1}
+                  style={{ borderRadius: 24 }}
+                >
+                  <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
+                    <PortraitCard plan={plan} style={{ borderRadius: 16 }} />
+                  </WispyBorder>
+                </ElectricBorder>
+              ) : (
+                <PortraitCard plan={plan} style={{ borderRadius: 24 }} />
+              )}
             </div>
           );
         })}
