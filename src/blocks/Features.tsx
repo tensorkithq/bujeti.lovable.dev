@@ -47,8 +47,8 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <section className="max-w-8xl py-20 sm:py-16 bg-white text-black">
-      <div className="container mx-auto px-4">
+    <section className="container max-w-8xl py-20 sm:py-16 bg-white text-black">
+      <div className="mx-auto px-4">
         <div className="text-left py-6 mb-12 max-w-2xl">
           <p className="text-lg text-gray-700 uppercase">Products</p>
           <h2 className="text-4xl md:text-6xl font-libre-baskerville mt-2 leading-tight tracking-tight">
