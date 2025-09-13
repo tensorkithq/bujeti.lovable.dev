@@ -1,4 +1,5 @@
 import React, { CSSProperties, useState } from 'react';
+import Header from '@/components/Header';
 import FumyBorder from '@/components/FumyBorder';
 import WispyBorder from '@/components/WispyBorder';
 interface IPricingPlan {
@@ -175,11 +176,13 @@ const Experimental: React.FC = () => {
     };
     return borderType === 'electric' ? baseElectricProps : baseLaserProps;
   };
-  return <div style={{
-    padding: '2rem',
-    background: 'linear-gradient(180deg, #000000 0%, #0a0a1a 50%, #000000 100%)',
-    minHeight: '100vh'
-  }}>
+  return <>
+    <Header />
+    <div style={{
+      padding: '2rem',
+      background: 'linear-gradient(180deg, #000000 0%, #0a0a1a 50%, #000000 100%)',
+      minHeight: '100vh'
+    }}>
       <h1 style={{
       color: 'white',
       marginBottom: '2rem',
@@ -311,19 +314,17 @@ const Experimental: React.FC = () => {
           </ul>
         </div>
 
-        
+         
         <ul style={{
         lineHeight: '1.8',
         paddingLeft: '1.5rem'
       }}>
-          
-          
-          
-          
+           
         </ul>
 
         
       </div>
-    </div>;
+    </div>
+  </>;
 };
 export default Experimental;
