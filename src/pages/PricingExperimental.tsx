@@ -6,7 +6,7 @@ import ElectricBorder from '@/components/ElectricBorder';
 
 const ManifestoText = () => {
   return (
-    <div className="relative overflow-hidden   pb-[200px] pt-[212px] lg:pb-[160px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
+    <div className="relative overflow-hidden pb-[120px] pt-[212px] lg:pb-[100px] lg:pt-[168px] md:pt-[145px] sm:pt-[109px]">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-3xl leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
           <p>
@@ -227,15 +227,6 @@ const PricingExperimental: React.FC = () => {
       padding: '2rem',
       minHeight: '100vh'
     }}>
-      <h1 style={{
-        color: 'white',
-        marginBottom: '2rem',
-        fontSize: '2.5rem',
-        textAlign: 'center'
-      }}>
-        Border Effects Comparison
-      </h1>
-
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
@@ -260,16 +251,24 @@ const PricingExperimental: React.FC = () => {
               }}
             >
               {isSelected ? (
+                      <ElectricBorder
+                      color={colors.outerColor}
+                      speed={1}
+                      chaos={0.9}
+                      thickness={3}
+                      style={{ borderRadius: 24 }}
+                    >
                 <ElectricBorder
                   color={colors.outerColor}
                   speed={1}
-                  chaos={0.5}
-                  thickness={1}
+                  chaos={0.9}
+                  thickness={3}
                   style={{ borderRadius: 24 }}
                 >
                   <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
-                    <PortraitCard plan={plan} style={{ borderRadius: 16 }} />
+                    <PortraitCard plan={plan} style={{ borderRadius: 16, margin: '4px' }} />
                   </WispyBorder>
+                </ElectricBorder>
                 </ElectricBorder>
               ) : (
                 <PortraitCard plan={plan} style={{ borderRadius: 24 }} />

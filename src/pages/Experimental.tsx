@@ -224,56 +224,83 @@ const Experimental: React.FC = () => {
       }}>
         {/* FumyBorder Pricing Card - Cyan */}
         <div>
-          <ElectricBorder
-            color="#00d4ff"
-            speed={1}
-            chaos={0.5}
-            thickness={1}
-            style={{ borderRadius: 24 }}
-          >
+          {disabled ? (
             <WispyBorder {...getBorderProps('#00d4ff', 'electric')}>
               <PortraitCard plan={pricingPlans.starter} />
             </WispyBorder>
-          </ElectricBorder>
+          ) : (
+            <ElectricBorder
+              color="#00d4ff"
+              speed={1}
+              chaos={0.5}
+              thickness={1}
+              style={{ borderRadius: 24 }}
+            >
+              <WispyBorder {...getBorderProps('#00d4ff', 'electric')}>
+                <PortraitCard plan={pricingPlans.starter} />
+              </WispyBorder>
+            </ElectricBorder>
+          )}
         </div>
 
         {/* WispyBorder Pricing Card - Magenta */}
         <div>
-        <ElectricBorder
-            color="#ff6b9d"
-            speed={1}
-            chaos={0.9}
-            thickness={9}
-            style={{ borderRadius: 24 }}
-          >
-          <WispyBorder {...getBorderProps('#ff6b9d', 'electric')}>
-            <PortraitCard plan={pricingPlans.professional} />
-          </WispyBorder>
-          </ElectricBorder>
+          {disabled ? (
+            <WispyBorder {...getBorderProps('#ff6b9d', 'electric')}>
+              <PortraitCard plan={pricingPlans.professional} />
+            </WispyBorder>
+          ) : (
+            <ElectricBorder
+              color="#ff6b9d"
+              speed={1}
+              chaos={0.9}
+              thickness={9}
+              style={{ borderRadius: 24 }}
+            >
+              <WispyBorder {...getBorderProps('#ff6b9d', 'electric')}>
+                <PortraitCard plan={pricingPlans.professional} />
+              </WispyBorder>
+            </ElectricBorder>
+          )}
         </div>
 
         {/* Nested Composition: WispyBorder inside FumyBorder - Purple/Gold */}
         <div>
-        <ElectricBorder
-            color="#fbbf24"
-            speed={1}
-            chaos={0.5}
-            thickness={1}
-            style={{ borderRadius: 24 }}
-          >
-          <FumyBorder {...getBorderProps('#fbbf24', 'electric')}>
-            <WispyBorder {...{
-              ...getBorderProps('#fbbf24', 'laser'),
-              style: {
-                borderRadius: "20px"
-              }
-            }}>
-              <PortraitCard plan={pricingPlans.enterprise} style={{
-                borderRadius: 16
-              }} />
-            </WispyBorder>
-          </FumyBorder>
-          </ElectricBorder>
+          {disabled ? (
+            <FumyBorder {...getBorderProps('#fbbf24', 'electric')}>
+              <WispyBorder {...{
+                ...getBorderProps('#fbbf24', 'laser'),
+                style: {
+                  borderRadius: "20px"
+                }
+              }}>
+                <PortraitCard plan={pricingPlans.enterprise} style={{
+                  borderRadius: 16
+                }} />
+              </WispyBorder>
+            </FumyBorder>
+          ) : (
+            <ElectricBorder
+              color="#fbbf24"
+              speed={1}
+              chaos={0.5}
+              thickness={1}
+              style={{ borderRadius: 24 }}
+            >
+              <FumyBorder {...getBorderProps('#fbbf24', 'electric')}>
+                <WispyBorder {...{
+                  ...getBorderProps('#fbbf24', 'laser'),
+                  style: {
+                    borderRadius: "20px"
+                  }
+                }}>
+                  <PortraitCard plan={pricingPlans.enterprise} style={{
+                    borderRadius: 16
+                  }} />
+                </WispyBorder>
+              </FumyBorder>
+            </ElectricBorder>
+          )}
         </div>
       </div>
 
