@@ -104,7 +104,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-8 border-t border-gray-200 bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-        <div className="text-sm container   text-left text-gray-500">
+        <div className="text-sm container max-w-8xl mx-auto text-left text-gray-500">
           <p>
             © 2025 Bujeti Inc. All rights reserved. Bujeti and the Bujeti logo
             are trademarks of Bujeti Inc.
