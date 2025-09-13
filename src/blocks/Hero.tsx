@@ -181,27 +181,51 @@ export default function HeroBlock() {
           }
         }}
       >
-        <LaserFlow
-          horizontalBeamOffset={0.09}
-          verticalBeamOffset={-0.0813}
-          color="#9fff59"
-          horizontalSizing={0.5}
-          verticalSizing={3}
-          wispDensity={1}
-          wispSpeed={15}
-          wispIntensity={5}
-          flowSpeed={0.45}
-          flowStrength={0.158}
-          /**
-           * Fog intensity doesn't render well on Safari
-           * Reduce to 0.002 for compatibility with Safari
-           */
-          fogIntensity={0.17}
-          fogScale={0.578}
-          fogFallSpeed={0.3}
-          decay={1.5}
-          falloffStart={1.5}
-        />
+        {/* Desktop LaserFlow */}
+        <div className="hidden md:block">
+          <LaserFlow
+            horizontalBeamOffset={0.09}
+            verticalBeamOffset={-0.0813}
+            color="#9fff59"
+            horizontalSizing={0.5}
+            verticalSizing={3}
+            wispDensity={1}
+            wispSpeed={15}
+            wispIntensity={5}
+            flowSpeed={0.45}
+            flowStrength={0.158}
+            /**
+             * Fog intensity doesn't render well on Safari
+             * Reduce to 0.002 for compatibility with Safari
+             */
+            fogIntensity={0.17}
+            fogScale={0.578}
+            fogFallSpeed={0.3}
+            decay={1.5}
+            falloffStart={1.5}
+          />
+        </div>
+
+        {/* Mobile LaserFlow */}
+        <div className="block md:hidden">
+          <LaserFlow
+            horizontalBeamOffset={0.09}
+            verticalBeamOffset={-0.15}
+            color="#9fff59"
+            horizontalSizing={0.5}
+            verticalSizing={3}
+            wispDensity={1}
+            wispSpeed={15}
+            wispIntensity={5}
+            flowSpeed={0.65}
+            flowStrength={0.158}
+            fogIntensity={0.17}
+            fogScale={0.85}
+            fogFallSpeed={0.3}
+            decay={2.2}
+            falloffStart={1.5}
+          />
+        </div>
 
         {/* Hero Text Section */}
         <section className="absolute z-10 px-4 md:px-0 w-full max-w-2xl md:max-w-7xl top-[15%] md:top-[15%] left-4 md:left-[22%] transform md:-translate-x-[10%] text-left">
