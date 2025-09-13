@@ -58,31 +58,50 @@ const HeroBottom = () => {
 
           {/* Mobile: horizontal marquee scroll */}
           <div className="md:hidden mt-6 overflow-hidden">
-            <div className="flex gap-4 pb-2 animate-marquee" style={{ width: 'max-content' }}>
+            <div
+              className="flex gap-4 pb-2 animate-marquee"
+              style={{ width: "max-content" }}
+            >
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Expense Management</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Expense Management
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Payments Automation</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Payments Automation
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Corporate Cards</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Corporate Cards
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Bank Connect</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Bank Connect
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Invoicing</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Invoicing
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Payroll</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Payroll
+                </span>
               </div>
               {/* Duplicate for seamless loop */}
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Expense Management</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Expense Management
+                </span>
               </div>
               <div className="flex items-center justify-center rounded-full px-6 py-3 min-w-fit">
-                <span className="text-white font-medium text-sm whitespace-nowrap">Payments Automation</span>
+                <span className="text-white font-medium text-sm whitespace-nowrap">
+                  Payments Automation
+                </span>
               </div>
             </div>
           </div>
@@ -139,8 +158,8 @@ const HeroMockup = () => {
           fill="url(#curveGradient2)"
         />
       </svg>
-      <div className="relative flex w-full justify-start items-start align-left overflow-hidden rounded-xl md:rounded-2xl ring-1 ring-[rgba(159,255,89,0.62)] ring-inset ring-offset-1 ring-offset-[rgba(159,255,89,0.12)] shadow-2xl shadow-[rgba(159,255,89,0.1)]">
-        <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
+      <div className="relative flex w-full justify-start items-start align-left overflow-hidden rounded-lg md:rounded-2xl ring-1 ring-[rgba(159,255,89,0.62)] ring-inset ring-offset-1 ring-offset-[rgba(159,255,89,0.12)] shadow-2xl shadow-[rgba(159,255,89,0.1)]">
+        <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
           <div className="relative w-full h-full bg-[#060010] overflow-hidden">
             <img
               src="/bujeti-mockup.png"
@@ -165,11 +184,7 @@ export default function HeroBlock() {
   return (
     <>
       <div
-        className="relative overflow-hidden"
-        style={{
-          height: "100vh",
-          minHeight: "600px",
-        }}
+        className="relative min-h-[600px] h-[88vh] md:h-[100vh] overflow-hidden"
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           const x = e.clientX - rect.left;
@@ -192,13 +207,13 @@ export default function HeroBlock() {
         <div className="hidden md:block">
           <LaserFlow
             horizontalBeamOffset={0.09}
-            verticalBeamOffset={-0.0813}
+            verticalBeamOffset={-0.153}
             color="#9fff59"
             horizontalSizing={0.5}
             verticalSizing={3}
             wispDensity={1}
             wispSpeed={15}
-            wispIntensity={5}
+            wispIntensity={9}
             flowSpeed={0.45}
             flowStrength={0.158}
             /**
@@ -207,7 +222,7 @@ export default function HeroBlock() {
              */
             fogIntensity={0.17}
             fogScale={0.578}
-            fogFallSpeed={0.3}
+            fogFallSpeed={0.375}
             decay={1.5}
             falloffStart={1.5}
           />
@@ -216,52 +231,71 @@ export default function HeroBlock() {
         {/* Mobile LaserFlow */}
         <div className="block md:hidden">
           <LaserFlow
-            horizontalBeamOffset={0.09}
-            verticalBeamOffset={-0.15}
+            horizontalBeamOffset={0.203}
+            verticalBeamOffset={-0.333}
+            dpr={0.35}
+            falloffStart={2.9}
             color="#9fff59"
             horizontalSizing={0.5}
-            verticalSizing={3}
-            wispDensity={1}
-            wispSpeed={15}
-            wispIntensity={5}
-            flowSpeed={0.65}
+            verticalSizing={2.6}
+            wispDensity={7}
+            wispSpeed={13}
+            wispIntensity={7}
+            flowSpeed={0.365}
             flowStrength={0.158}
-            fogIntensity={0.17}
-            fogScale={0.85}
-            fogFallSpeed={0.3}
-            decay={2.2}
-            falloffStart={1.5}
+            fogIntensity={0.97}
+            fogScale={2.85}
+            fogFallSpeed={1.1}
+            decay={1.4}
+            style={{ minHeight: "450px", width: "100%" }}
           />
         </div>
 
         {/* Hero Text Section */}
-        <section className="absolute z-10 px-4 md:px-0 w-full max-w-2xl md:max-w-7xl top-[15%] md:top-[15%] left-4 md:left-[22%] transform md:-translate-x-[10%] text-left">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
-            Your finances
-            <br />
-            all in one place
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-lg md:max-w-2xl mx-auto md:mx-0">
-            Bujeti is Africa's most loved spend management platform that tracks
-            expenses, reimbursements, and invoices for financial efficiency on
-            the go.
-          </p>
-          <div
-            className="inline-block p-[2px] rounded-2xl ring-2 ring-accent/20 hover:ring-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-200 touch-manipulation"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(159, 255, 89, 0.3), transparent, rgba(159, 255, 89, 0.3))",
-            }}
-          >
-            <Button
-              className="bg-white text-black hover:bg-gray-50 px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-medium rounded-[14px] transition-all duration-200 min-h-[48px] touch-manipulation"
+        <section className="absolute z-10 max-w-8xl mx-auto container left-0 top-[10%] md:top-[12%] lg:top-[15%] flex justify-center pointer-events-none">
+          <div className="relative left-0 transform translate-x-0 lg:translate-x-8 4xl:translate-x-28 w-[100%] md:w-[67.11%] flex flex-col items-start text-left">
+            <h1 className="font-bold text-white mb-4 md:mb-6 leading-tight text-[clamp(1.875rem,4vw,3.75rem)] sm:text-[clamp(3rem,5vw,3.75rem)] lg:text-[clamp(3.75rem,4.5vw,4rem)]">
+              Your finances
+              <br />
+              all in one place
+            </h1>
+            <p
+              className="text-gray-300 mb-6 md:mb-8 max-w-xs sm:max-w-md md:max-w-xl mx-auto md:mx-0 px-0 relative ml-0"
               style={{
-                background:
-                  "linear-gradient(135deg, rgba(159, 255, 89, 0.1) 0%, white 15%, white 85%, rgba(159, 255, 89, 0.1) 100%)",
+                fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
               }}
             >
-              SEE IN ACTION <span className="mb-0.5 ml-2">→</span>
-            </Button>
+              Bujeti is Africa's most loved spend management platform that
+              tracks expenses, reimbursements, and invoices for financial
+              efficiency on the go.
+            </p>
+            <div className="relative inline-block p-[2px] rounded-3xl overflow-hidden ring-lime-200 ring-2 ring-accent/5 hover:ring-accent/40 transition-all duration-200 touch-manipulation">
+              <div
+                className="absolute -z-10 flex w-[204px] items-center justify-center pointer-events-none"
+                style={{
+                  transform: "translateX(114.203125px) translateZ(0px)",
+                }}
+              ></div>
+
+              <div className="absolute top-1/2 right-0 h-[121px] w-[121px] -translate-y-1/2 bg-[radial-gradient(50%_50%_at_50%_50%,#FFFFF5_3.5%_,_#FFAA81_26.5%,#FFDA9F_37.5%,rgba(255,170,129,0.50)_49%,rgba(210,106,58,0.00)_92.5%)]" />
+              <div className="absolute top-1/2 right-0 h-[103px] w-[204px] -translate-y-1/2 bg-[radial-gradient(43.3%_44.23%_at_50%_49.51%,_#FFFFF7_29%,_#FFFACD_48.5%,_#F4D2BF_60.71%,rgba(214,211,210,0.00)_100%)] blur-[5px]" />
+              <a href="/pricing-experimental" className="w-full z-10 pointer-events-auto">
+              <Button
+                className="relative z-10 pr-16 rounded-3xl bg-white text-black w-full hover:bg-gray-50 text-sm md:text-base font-medium transition-all duration-200 min-h-[38px] touch-manipulation"
+                style={{
+                  // bright lemon-green edges with white center + inner shine
+                  background:
+                    "linear-gradient(135deg, rgba(222,255,69,0.1) 0%, white 1%, white 72%, rgba(222,255,69,0.1) 100%)",
+                  border: "1px solid rgba(222,255,69,0.16)",
+                }}
+              >
+                SEE IN ACTION{" "}
+                <span className="mb-0.5 ml-2 hover:pl-2 transition-all duration-200">
+                  →
+                </span>
+              </Button>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -275,28 +309,30 @@ export default function HeroBlock() {
           className="absolute min-h-full inset-0"
           style={{
             background: `
-              repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(159, 255, 89, 0.03) 2px,
-                rgba(159, 255, 89, 0.03) 4px
-              ),
-              repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(159, 255, 89, 0.03) 2px,
-                rgba(159, 255, 89, 0.03) 4px
-              )
-            `,
+          repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(222, 255, 69, 0.045) 2px,
+          rgba(222, 255, 69, 0.045) 4px
+          ),
+          repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(222, 255, 69, 0.045) 2px,
+          rgba(222, 255, 69, 0.045) 4px
+          )
+        `,
             mixBlendMode: "screen",
-            opacity: 0.5,
-            filter: "contrast(1.2)",
+            opacity: 0.6,
+            filter: "contrast(1.25) blur(0.2px)",
             WebkitMaskImage:
               "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
             maskImage:
               "radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.4) 120px, rgba(255,255,255,0) 200px)",
+            // subtle overall glow tint
+            boxShadow: "inset 0 0 120px rgba(222,255,69,0.03)",
           }}
         />
         {/* End Dotted Grid Effect */}

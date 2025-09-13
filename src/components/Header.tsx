@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="w-full px-6 py-4 bg-transparent absolute top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className="w-full  container px-6 py-4 bg-transparent absolute top-0 left-0 right-0 z-50">
+      <div className="max-w-8xl mx-auto flex items-start justify-between">
         {/* Logo and Navigation */}
         <div className="flex items-center gap-8">
           {/* Logo */}
