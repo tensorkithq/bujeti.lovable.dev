@@ -56,11 +56,11 @@ const NestedBorderPricingCard: React.FC<NestedBorderPricingCardProps> = ({ plan,
   const innerCardStyle = { borderRadius: 16 };
 
   return (
-    <FumyBorder {...outerProps}>
       <WispyBorder {...innerProps}>
+    <FumyBorder {...outerProps}>
         <PricingCard plan={plan} style={innerCardStyle} />
-      </WispyBorder>
     </FumyBorder>
+      </WispyBorder>
   );
 };
 
