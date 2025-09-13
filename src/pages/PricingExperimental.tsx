@@ -241,71 +241,135 @@ const PricingExperimental: React.FC = () => {
   return <>
     <Header />
     <ManifestoText />
-    <div style={{
-      padding: '2rem',
-      minHeight: '100vh'
-    }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-        gap: '3rem',
-        maxWidth: '1400px',
-        margin: '0 auto'
-      }}>
-        {pricingPlans.map((plan) => {
-          const colors = borderColors[plan.name as keyof typeof borderColors];
-          const isSelected = selectedPlan === plan.name;
+    <div className="relative pb-16 px-4 sm:px-6 lg:px-8">
+      {/* Pricing Cards Container */}
+      <div className="relative max-w-7xl mx-auto">
+        {/* Desktop: Static layout if all cards fit, otherwise scroll */}
+        <div className="hidden xl:block">
+          <div className="flex gap-6 justify-center items-stretch">
+            {pricingPlans.map((plan) => {
+              const colors = borderColors[plan.name as keyof typeof borderColors];
+              const isSelected = selectedPlan === plan.name;
 
-          return (
-            <div
-              key={plan.name}
-              onClick={() => setSelectedPlan(plan.name)}
-              style={{
-                cursor: "pointer",
-                flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
-                minHeight: "500px",
-              }}
-            >
-              {isSelected ? (
-                <FractalElectricBorder
-                  color={colors.outerColor}
-                  speed={1}
-                  chaos={0.9}
-                  thickness={3}
-                  style={{ borderRadius: 20 }}
+              return (
+                <div
+                  key={plan.name}
+                  onClick={() => setSelectedPlan(plan.name)}
+                  className="cursor-pointer flex-1 max-w-sm"
                 >
-                  <ElectricBorder
-                    color={colors.outerColor}
-                    speed={1}
-                    chaos={0.9}
-                    thickness={3}
-                    style={{ borderRadius: 20 }}
-                  >
-                    <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
-                      <PortraitCard plan={plan} style={{ 
-                        borderColor: colors.outerColor, 
-                        borderWidth: 2, 
-                        borderRadius: 24, 
-                        marginTop: '12px',
-                        marginLeft: '8px',
-                        marginRight: '8px',
-                        marginBottom: '12px',
-                        background: 'rgba(13, 15, 17, 0.4)',
-                        backdropFilter: 'blur(10px)',
-                        }} />
-                    </WispyBorder>
-                  </ElectricBorder>
-                </FractalElectricBorder>
-              ) : (
-                <PortraitCard plan={plan} style={{ borderRadius: 24 }} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+                  {isSelected ? (
+                    <FractalElectricBorder
+                      color={colors.outerColor}
+                      speed={1}
+                      chaos={0.9}
+                      thickness={3}
+                      style={{ borderRadius: 20 }}
+                    >
+                      <ElectricBorder
+                        color={colors.outerColor}
+                        speed={1}
+                        chaos={0.9}
+                        thickness={3}
+                        style={{ borderRadius: 20 }}
+                      >
+                        <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
+                          <PortraitCard plan={plan} style={{ 
+                            borderColor: colors.outerColor, 
+                            borderWidth: 2, 
+                            borderRadius: 24, 
+                            marginTop: '12px',
+                            marginLeft: '8px',
+                            marginRight: '8px',
+                            marginBottom: '12px',
+                            background: 'rgba(13, 15, 17, 0.4)',
+                            backdropFilter: 'blur(10px)',
+                          }} />
+                        </WispyBorder>
+                      </ElectricBorder>
+                    </FractalElectricBorder>
+                  ) : (
+                    <PortraitCard plan={plan} style={{ borderRadius: 24 }} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
+        {/* Mobile and Tablet: Horizontal Scroll */}
+        <div className="xl:hidden">
+          <div 
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hidden pb-4"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              paddingLeft: 'calc(50vw - 160px)', // Center first card on mobile
+              paddingRight: 'calc(50vw - 160px)', // Center last card on mobile
+            }}
+          >
+            {pricingPlans.map((plan, index) => {
+              const colors = borderColors[plan.name as keyof typeof borderColors];
+              const isSelected = selectedPlan === plan.name;
+
+              return (
+                <div
+                  key={plan.name}
+                  onClick={() => setSelectedPlan(plan.name)}
+                  className="cursor-pointer flex-shrink-0 snap-center w-80 md:w-96"
+                  style={{ minHeight: '500px' }}
+                >
+                  {isSelected ? (
+                    <FractalElectricBorder
+                      color={colors.outerColor}
+                      speed={1}
+                      chaos={0.9}
+                      thickness={3}
+                      style={{ borderRadius: 20 }}
+                    >
+                      <ElectricBorder
+                        color={colors.outerColor}
+                        speed={1}
+                        chaos={0.9}
+                        thickness={3}
+                        style={{ borderRadius: 20 }}
+                      >
+                        <WispyBorder {...getBorderProps(colors.innerColor, 'laser', false)}>
+                          <PortraitCard plan={plan} style={{ 
+                            borderColor: colors.outerColor, 
+                            borderWidth: 2, 
+                            borderRadius: 24, 
+                            marginTop: '12px',
+                            marginLeft: '8px',
+                            marginRight: '8px',
+                            marginBottom: '12px',
+                            background: 'rgba(13, 15, 17, 0.4)',
+                            backdropFilter: 'blur(10px)',
+                          }} />
+                        </WispyBorder>
+                      </ElectricBorder>
+                    </FractalElectricBorder>
+                  ) : (
+                    <PortraitCard plan={plan} style={{ borderRadius: 24 }} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Scroll Indicators - Only show on mobile/tablet */}
+        <div className="xl:hidden flex justify-center mt-8 gap-2">
+          {pricingPlans.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === 0 // You can implement active state detection if needed
+                  ? 'bg-white opacity-100'
+                  : 'bg-white opacity-30'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
     <Footer />
   </>;
