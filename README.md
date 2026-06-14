@@ -1,6 +1,6 @@
-# Beamline
+# Beamline — landing page exploration
 
-Landing page for **Beamline** — the financial command center for fast-moving teams. Corporate cards, payments, payroll, and invoicing on one platform.
+An exploratory landing-page design for **Beamline** — the financial command center for fast-moving teams: corporate cards, payments, payroll, and invoicing on one platform. This repo is one branch of that conversation: a self-contained design direction to react to, not a finished product site.
 
 Built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui. The hero uses a WebGL laser-flow shader (Three.js).
 
