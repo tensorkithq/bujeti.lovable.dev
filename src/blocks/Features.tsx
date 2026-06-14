@@ -4,35 +4,35 @@ const featuresData = [
   {
     title: "Expense management",
     description: "Organise transactions and enforce policies",
-    href: "https://bujeti.com/expense-management",
+    href: "#",
     imageUrl:
       "https://framerusercontent.com/images/zfQutIyZ0z4niVsiYDOwLKuEoMI.png",
   },
   {
     title: "Corporate cards",
     description: "Flexible multi-currency cards for your teams",
-    href: "https://bujeti.com/corporate-card",
+    href: "#",
     imageUrl:
       "https://framerusercontent.com/images/JNQY19SsIwqJFG9L1jrMnd5Q.png",
   },
   {
     title: "Payments automation",
     description: "Efficient payments with approval rules",
-    href: "https://bujeti.com/payments-automation",
+    href: "#",
     imageUrl:
       "https://framerusercontent.com/images/5YitMupVXNGY9e01jluqYqmyXQ.png",
   },
   {
     title: "Bank connect",
     description: "Connect and manage bank accounts",
-    href: "https://bujeti.com/bank-connect",
+    href: "#",
     imageUrl:
       "https://framerusercontent.com/images/D7fumEJXvQZLg6tAEVotiO4ywA.png",
   },
   {
     title: "Invoicing",
     description: "Create and send invoices in minutes",
-    href: "https://bujeti.com/invoicing",
+    href: "#",
     imageUrl:
       "https://framerusercontent.com/images/Npttp9RiMGhGQ2IcMcBmxDpmPM.png",
   },
@@ -62,8 +62,6 @@ const Features = () => {
             <a
               key={index}
               href={feature.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group ring-1 ring-gray-100/50 block rounded-xl shadow-[inset_0px_-0.5px_0px_0px_rgba(0,0,0,0.12),0px_1px_2px_-0.5px_rgba(0,0,0,0.06),0px_0px_0px_0.5px_rgba(48,48,48,0.16)] overflow-hidden bg-gray-50"
               style={{
                 backgroundColor: "rgb(243, 243, 243)",

@@ -7,29 +7,26 @@ const ManifestoText = () => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-3xl leading-relaxed text-white lg:text-2xl md:text-xl sm:text-lg">
           <p>
-            The Bujeti team prioritizes open software, ensuring Bujeti remains
-            free. To sustain cloud operations and further development, cloud
-            users will be charged for consumed cloud resources. These resources
-            currently fall into three categories: storage, network and compute.
+            Beamline exists to make company money programmable. Cards,
+            payments, payroll, and invoicing run on one platform — priced so
+            you only pay for what your team actually uses.
           </p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
           <p>
-            Storage charges depend on data size, excluding Bujeti objects but
-            including attachments. Users can have unlimited Bujeti objects
-            without storage limitations, but documents, images and videos are
-            counted based on the plan.
+            Plans scale with seats and payment volume. No setup fees, no
+            per-feature surprises — every charge is metered transparently, so
+            finance always knows the bill before it lands.
           </p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
-          <p>Network charges apply only to audio and video calls.</p>
+          <p>Switching is free: migration and onboarding are on us.</p>
           <div className="my-16 lg:my-14 md:my-12 sm:my-8"></div>
           <p>
-            Compute resource charges will apply to the upcoming{" "}
+            Coming soon:{" "}
             <span className="bg-gradient-to-r from-cyan-300 via-blue-500 to-purple-400 bg-clip-text text-transparent">
-              Bujeti AI and Bujeti MetaBrain
+              Beamline AI and Beamline Autopilot
             </span>{" "}
-            features, with costs assured to be no higher than industry leaders
-            like OpenAI. Users can pay for these services directly via their
-            OpenAI accounts.
+            — close your books, flag anomalies, and draft approvals
+            automatically.
           </p>
         </div>
       </div>
@@ -137,7 +134,7 @@ const PricingWithManifesto = () => {
             className="max-w-7xl mx-auto relative"
             style={{ height: "100%" }}
           >
-            <h2 className="sr-only">Bujeti pricing plans</h2>
+            <h2 className="sr-only">Beamline pricing plans</h2>
             <div className="relative xs:px-5" style={{ overflow: "hidden" }}>
               <div
                 className="no-scrollbars flex snap-x snap-mandatory"
@@ -192,7 +189,7 @@ const PricingWithManifesto = () => {
           <p>Ready to discuss your needs and get a personalized quote?</p>
           <div className="mt-8">
             <a
-              href="mailto:hey@bujeti.com"
+              href="mailto:hello@beamline.app"
               className="text-accent hover:underline"
             >
               Contact us

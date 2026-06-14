@@ -162,8 +162,8 @@ const HeroMockup = () => {
         <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-2xl border-1 border-[rgba(159,255,89,0.12)]">
           <div className="relative w-full h-full bg-[#060010] overflow-hidden">
             <img
-              src="/bujeti-mockup.png"
-              alt="Bujeti App Mockup"
+              src="/dashboard-mockup.png"
+              alt="Beamline dashboard"
               className="w-full h-full object-cover"
               style={{
                 filter:
@@ -255,9 +255,9 @@ export default function HeroBlock() {
         <section className="absolute z-10 max-w-8xl mx-auto container left-0 top-[10%] md:top-[12%] lg:top-[15%] flex justify-center pointer-events-none">
           <div className="relative left-0 transform translate-x-0 lg:translate-x-8 4xl:translate-x-28 w-[100%] md:w-[67.11%] flex flex-col items-start text-left">
             <h1 className="font-bold text-white mb-4 md:mb-6 leading-tight text-[clamp(1.875rem,4vw,3.75rem)] sm:text-[clamp(3rem,5vw,3.75rem)] lg:text-[clamp(3.75rem,4.5vw,4rem)]">
-              Your finances
+              All your spend,
               <br />
-              all in one place
+              on one line
             </h1>
             <p
               className="text-gray-300 mb-6 md:mb-8 max-w-xs sm:max-w-md md:max-w-xl mx-auto md:mx-0 px-0 relative ml-0"
@@ -265,9 +265,9 @@ export default function HeroBlock() {
                 fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
               }}
             >
-              Bujeti is Africa's most loved spend management platform that
-              tracks expenses, reimbursements, and invoices for financial
-              efficiency on the go.
+              Beamline is the financial command center for fast-moving teams —
+              corporate cards, payments, payroll, and invoicing on one
+              platform, so finance moves at the speed of the business.
             </p>
             <div className="relative inline-block p-[2px] rounded-3xl overflow-hidden ring-lime-200 ring-2 ring-accent/5 hover:ring-accent/40 transition-all duration-200 touch-manipulation">
               <div
@@ -350,14 +350,7 @@ export default function HeroBlock() {
         >
           <img
             ref={revealImgRef}
-            /**
-             * @NOTE:
-             * Bujeti app is a white based theme, so we need to invert the
-             * color of the image properly blend. For this demo, we will not use their assets.
-             *      filter: "invert(98%)  saturate(100%) hue-rotate(200deg) brightness(100%) contrast(100%)",
-             *      src="https://framerusercontent.com/images/NLkhr0EP9YuJiG3pkMzw9fAbU.png?scale-down-to=1024&width=1786&height=1372"
-             */
-            // Preffered Screenshot from Dribbble https://dribbble.com/shots/25900652-Qiespend-AI-Powered-Fintech-Dashboard
+            // Screenshot from Dribbble https://dribbble.com/shots/25900652-Qiespend-AI-Powered-Fintech-Dashboard
             src="https://cdn.dribbble.com/userupload/42921161/file/original-7c578605b303df0ab822981cede61ea9.png?resize=1024x768&vertical=center"
             // src="https://cdn.dribbble.com/userupload/42921159/file/original-b85951904fcd673fd818f99a8a32e661.png?resize=1024x768&vertical=center"
             alt="Reveal effect"
@@ -365,9 +358,7 @@ export default function HeroBlock() {
               position: "absolute",
               width: "100%",
               top: "10%",
-              //@ts-ignore
               "--mx": "-9999px",
-              //@ts-ignore
               "--my": "-9999px",
               mixBlendMode: "lighten",
               opacity: 0.3,
